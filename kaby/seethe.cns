@@ -346,6 +346,7 @@ physics = S
 [State 1000, 6]
 type = ChangeState
 trigger1 = var(19) = 7 && var(10) = 0
+triggerall = numhelper(6678) = 0
 value = 526
 ctrl = 1
 
@@ -376,6 +377,7 @@ physics = A
 [State 1000, 6]
 type = ChangeState
 trigger1 = var(19) = 7 && var(10) = 0
+triggerall = numhelper(6823) = 0
 value = 5322
 ctrl = 1
 
@@ -1920,7 +1922,7 @@ triggerall = !movecontact
 trigger1 = 1
 attr = A, NA
 animtype  = Up
-damage    = ifelse(enemy,movetype = A,60,30)*1.2
+damage    = ifelse(enemy,movetype = A,60,30) * map(AbilityMultiplier)
 hitflag = MAF
 guardflag = HAF
 pausetime = ifelse(enemy,movetype = A,24,12),ifelse(enemy,movetype = A,24,12)
@@ -8833,7 +8835,7 @@ ctrl = 0
 [State 200, End]
 type = ChangeState
 triggerall = movecontact
-triggerall = numhelper(6623) = 0
+triggerall = numhelper(6823) = 0
 triggerall = power >= 300
 trigger1 = command = "holdfwd"
 trigger1 = command = "c"
@@ -8882,8 +8884,8 @@ type = Helper
 trigger1 = movecontact
 helpertype = normal ;player
 name = "Spam Deny"
-ID = 6623
-stateno = 6623
+ID = 6823
+stateno = 6823
 pos = 9999,9999
 postype = p1    ;p2,front,back,left,right
 facing = 1
@@ -8894,12 +8896,12 @@ pausemovetime = 0
 
 [State 0, Add X and Y coordinates if linked with s.6C]
 type = PosAdd
-trigger1 = prevstateno = 402 && time = 0
+trigger1 = prevstateno = 526 && time = 0
 x = 2
 y = -15
 [State 0, No Physics if linked with s.6C]
 type = StateTypeSet
-trigger1 = prevstateno = 402 && time = 0
+trigger1 = prevstateno = 526 && time = 0
 statetype = A
 movetype = A
 physics = N
@@ -9024,7 +9026,7 @@ ctrl = 0
 [State 200, Fwd+C]
 type = ChangeState
 Triggerall = movecontact
-Triggerall = numhelper(6678) < 1
+Triggerall = numhelper(6678) = 0
 triggerall = power >= 300
 trigger1 = command = "holdfwd"
 trigger1 = command = "c"
@@ -16731,7 +16733,7 @@ trigger12 = AnimElem = 15
 trigger13 = AnimElem = 16
 attr = A, NA
 animtype  = Medium
-damage    = ifelse(prevstateno = 625 || prevstateno = 402, 4,3)*1.2
+damage    = ifelse((prevstateno = 526 || prevstateno = 5322), 4,3)*1.2
 hitflag = MAF
 guardflag = MAF
 pausetime = 2,2

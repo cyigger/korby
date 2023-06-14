@@ -122,7 +122,7 @@ AbilityBubble = 0  ; for korby **UNUSED**
 Has6C = 0  ; for korby
 Has4C = 0  ; for korby
 damagesave = 0 ; for korby
-AbilityMultiplier = 2 ; damage multiplier for abilities
+AbilityMultiplier = 1.2 ; damage multiplier for abilities
 
 
 ;---------------------------------------------------------------------------
