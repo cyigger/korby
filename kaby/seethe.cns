@@ -1922,7 +1922,7 @@ triggerall = !movecontact
 trigger1 = 1
 attr = A, NA
 animtype  = Up
-damage    = ifelse(enemy,movetype = A,60,30) * map(AbilityMultiplier)
+damage    = ifelse(enemy,movetype = A,60,30) * 1.2
 hitflag = MAF
 guardflag = HAF
 pausetime = ifelse(enemy,movetype = A,24,12),ifelse(enemy,movetype = A,24,12)
