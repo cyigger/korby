@@ -1319,7 +1319,7 @@ volumescale = 300
 
 [State 0, Helper]
 type = Helper
-trigger1 = time = 45
+trigger1 = time = 0
 helpertype = normal ;player
 name = "BOOM"
 stateno = 27005
@@ -1507,7 +1507,7 @@ damage    = 300 ; hello moto
 hitflag = MAFD
 guardflag = MA
 pausetime = 0,180
-guard.pausetime = 100 
+guard.pausetime = 0,100
 sparkno = 15000
 guard.sparkno = 13000
 sparkxy = -8,-25
