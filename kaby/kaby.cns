@@ -599,9 +599,8 @@ Fall = 0
 
 [State 200, End]
 type = ChangeState
-triggerall = command = "WD" && command != "NotWD"
-trigger1 = movecontact && AnimTime = -5
-trigger2 = movehit
+triggerall = movehit || AnimTime  > -5
+trigger1 = command = "WD" && command != "NotWD"
 value = 30
 
 [State 200, SPECIAL 3 - CUTTER]
@@ -732,9 +731,10 @@ damage    = 15
 hitflag = MAFD
 guardflag = MA
 pausetime = 8,14
-guard.pausetime = 6,17
+guard.pausetime = 8,19
 ground.hittime  = 20
 air.hittime = 65 + ifelse(enemy,movetype = A, 17,0)
+guard.hittime = 10
 sparkno = 15000
 guard.sparkno = 13000
 sparkxy = -8,-25
@@ -1276,8 +1276,8 @@ animtype  = Hard
 damage    = 20
 hitflag = MAF
 guardflag = MA
-pausetime = 10,16
-guard.pausetime = 10,10
+pausetime = 12,16
+guard.pausetime = 12,10
 ground.hittime  = 20 + ifelse(enemy,movetype = A, 10,0)
 air.hittime = 20 + ifelse(enemy,movetype = A, 10,0)
 sparkno = 15000
@@ -1292,12 +1292,11 @@ air.velocity = -2, .7
 fall.recover = 0
 air.fall = 1
 
-;[State 200, End]
-;type = ChangeState
-;triggerall = movecontact
-;trigger1 = command = "WD"
-;value = 30
-
+[State 200, End]
+type = ChangeState
+triggerall = movehit || AnimTime  > -5
+trigger1 = command = "WD" && command != "NotWD"
+value = 30
 
 [State 200, SPECIAL 1 - Sword]
 type = ChangeState
@@ -1437,8 +1436,8 @@ animtype  = Medium
 damage    = 20
 hitflag = MAFD
 guardflag = MA
-pausetime = 10,16
-guard.pausetime = 10,10
+pausetime = 12,14
+guard.pausetime = 12,11
 ground.hittime  = 20 + ifelse(enemy,movetype = A, 10,0)
 air.hittime = 20 + ifelse(enemy,movetype = A, 10,0)
 sparkno = 15000
@@ -1624,7 +1623,7 @@ animtype  = Hard
 damage    = 35
 hitflag = MAFD
 guardflag = MA
-pausetime = 12,15
+pausetime = 12,12
 guard.pausetime = 12,6
 ground.hittime  = 20 + ifelse(enemy,movetype = A, 10,0)
 air.hittime = 20 + ifelse(enemy,movetype = A, 10,0)
