@@ -21016,6 +21016,12 @@ ignorehitpause = 1
 ;---------------------------------------------------------------------
 [Statedef -3]
 
+[State 214, y]
+type = removeexplod
+trigger1 = stateno != 401 && stateno != 409
+trigger2 = movetype = H
+id = 143
+
 ; ------- Heat Mechanic ------------
 
 [State 0, Helper]
