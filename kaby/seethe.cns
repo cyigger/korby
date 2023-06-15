@@ -7403,6 +7403,11 @@ juggle  = 2
 anim = 506
 sprpriority = 3
 
+[State 0, AttackDist]
+type = AttackDist
+trigger1 = 1
+value = 60
+
 [State 0, Juggle Map]
 type = RootMapAdd
 trigger1 = movehit && enemy,gethitvar(fall)
