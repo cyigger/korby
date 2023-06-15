@@ -1262,6 +1262,11 @@ ctrl = 0
 anim = 401
 sprpriority = 2
 
+[State 214, y]
+type = removeexplod
+trigger1 = p2dist x <= 10
+id = 143
+
 [State 210, 1]
 type = stopSnd
 trigger1 = animelem = 6
@@ -1279,12 +1284,6 @@ time = 1
 pos = 0,0
 
 [State 0, VelAdd]
-type = VelSet
-trigger1 = time = 0
-x = 0
-y = 0
-
-[State 0, VelAdd]
 type = VelAdd
 triggerall = time >= 22
 trigger1 = pos y < -1 || vel y < 0
@@ -1295,23 +1294,23 @@ type = StateTypeSet
 triggerall = time >= 22
 trigger1 = pos y < -1 || vel y < 0
 statetype = A
-physics = A
+physics = N
 
 [State 0, VelSet]
 type = VelSet
-triggerall = time >= 22
+;triggerall = time >= 22
 trigger1 = pos y >= -1 && vel y >= 0
 y = 0
 
 [State 0, PosSet]
 type = PosSet
-triggerall = time >= 22
+;triggerall = time >= 22
 trigger1 = pos y >= -1 && vel y >= 0
 y = 0
 
 [State 0, StateTypeSet]
 type = StateTypeSet
-triggerall = time >= 22
+;triggerall = time >= 22
 trigger1 = pos y >= -1 && vel y >= 0
 statetype = S
 physics = S
@@ -21085,7 +21084,7 @@ ignorehitpause = 1
 
 [State 214, y]
 type = removeexplod
-trigger1 = stateno != 401 && stateno != 409
+trigger1 = stateno != 401 && stateno != 409 && stateno != 402
 trigger2 = movetype = H
 id = 143
 
