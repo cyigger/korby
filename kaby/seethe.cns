@@ -1100,7 +1100,7 @@ channel = 0
 type = HitOverride
 trigger1 =  time >= 18
 trigger1 = prevstateno = 409
-attr = SCA,NP
+attr = SCA,NP,SP,HP ; since it is slower now
 stateno = 20010
 
 
@@ -1368,8 +1368,8 @@ guardsound = 6,0
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 25
-ground.velocity = 5,-2
-air.velocity = 5 -2
+ground.velocity = 10,-2
+air.velocity = 10 -2
 guard.velocity = 5
 Fall = 1
 p2stateno = 1025
