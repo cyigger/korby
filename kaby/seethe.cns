@@ -1201,25 +1201,41 @@ physics = N
 ctrl = 0
 anim = 5001
 sprpriority = -1
-velset = 7,0
+velset = 0,0
 
+[State 0, Turn]
+type = Turn
+trigger1 = p2dist x < 0
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = p2dist y < 0
+y = -.4
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = p2dist y > 0
+y = .4
+
+[State 0, VelAdd]
+type = VelAdd
+trigger1 = 1
+x = .5
 
 [State 0, VelSet]
 type = VelSet
-trigger1 =  time >= 10
+trigger1 =  p2dist x <= 10
 x = 0
 y = 0
 
-
-
 [State 2125, ]
 type = AssertSpecial
-trigger1 = time >= 10
+trigger1 = p2dist x <= 10
 flag = invisible
 
 [state 591, AssertSpecial]
 type = AssertSpecial
-trigger1 = time >= 10
+trigger1 = p2dist x <= 10
 flag = noshadow
 
 [State 2125,]
@@ -1279,7 +1295,7 @@ type = StateTypeSet
 triggerall = time >= 22
 trigger1 = pos y < -1 || vel y < 0
 statetype = A
-physics = N
+physics = A
 
 [State 0, VelSet]
 type = VelSet
@@ -1300,16 +1316,22 @@ trigger1 = pos y >= -1 && vel y >= 0
 statetype = S
 physics = S
 
+[State 0, ChangeAnim]
+type = ChangeAnim
+trigger1 =  p2dist x <=! 10 && animelem = 5
+value = 401
+elem = 5
+
 [State 200,p]
 type = ChangeState
-triggerall = time >= 23
+triggerall = p2dist x <= 10
 Trigger1 = command = "holddown" 
 value = 404
 ctrl = 1
 
 [State 200,p]
 type = ChangeState
-triggerall = time >= 23
+triggerall = p2dist x <= 10
 Trigger1 = command = "a"
 trigger2 = time = 100
 value = 408
