@@ -1124,8 +1124,9 @@ persistent = 0
 [State 210, 2]
 type = HitDef
 triggerall = !movecontact
-trigger1 = 1
-attr = S, ST
+triggerall = ((enemy,prevstateno = 40 || enemy,prevstateno = 60 || enemy,stateno = 105) && enemy,time >= 5)
+trigger1 = enemy,anim != 40
+attr = S, NT
 animtype  = Hard
 damage    = 0
 hitflag = MAFD
@@ -1142,6 +1143,35 @@ airguard.velocity = 4,-.5
 p2facing = 1
 p2stateno = 902
 p1stateno = 402
+p2getp1state = 1
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+kill = 0
+p2facing = 1
+
+[State 210, 2]
+type = HitDef
+triggerall = !movecontact
+triggerall = !((enemy,prevstateno = 40 || enemy,prevstateno = 60 || enemy,stateno = 105) && enemy,time >= 5)
+trigger1 = enemy,anim != 40
+attr = S, NT
+animtype  = Hard
+damage    = 0
+hitflag = MFD
+pausetime = 0,0
+numhits = 0
+sparkno = -1
+sparkxy = -2,-30
+guardsound = S6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 20
+guard.velocity = 4
+airguard.velocity = 4,-.5
+p2facing = 1
+p2stateno = 902
+p1stateno = 402
+p2getp1state = 1
 ground.cornerpush.veloff = 0
 air.cornerpush.veloff = 0
 kill = 0
@@ -5966,6 +5996,23 @@ anim = 509
 poweradd = -200
 velset = 0,0
 sprpriority = 1
+ctrl = 0
+
+[State 0, Pause]
+type = Pause
+trigger1 = AnimElem = 3
+time = 7
+movetime = 7
+
+[State 0, Turn]
+type = Turn
+trigger1 = p2dist x < 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Animelem = 3
+x = 3
+y = -3
 
 [State 470, MapSet] ; Saves Noll's X position
 type = MapSet
@@ -5978,12 +6025,6 @@ type = MapSet
 trigger1 = time = 0
 map = "switchY"
 value = pos y
-
-[State 0, Pause]
-type = Pause
-trigger1 = AnimElem = 3
-time = 7
-movetime = 7
 
 [State 0, PlaySnd]
 type = PlaySnd
@@ -6009,13 +6050,17 @@ trigger1 = Animelem = 3
 x = 3
 y = -3
 
-
-
 [State 0, PosSet]
 type = PosSet
 trigger1 = AnimElem = 3
 x = helper(506),pos x
 y = helper(506),pos y + 35
+
+[State 470, Stance var reset] ; On Switch, resets Noll's blade stance uses
+type = VarSet
+trigger1 = time = 1
+v = 35
+value = 0
 
 [State 0, Explod]
 type = Explod
@@ -6460,7 +6505,7 @@ ctrl = 1
 
 [State 0, ChangeState Switch] ; Used when Noll switches
 type = ChangeState
-trigger1 = root,stateno = 509 && root,animelem = 3
+trigger1 = root,prevstateno = 509 && root,movetype != H
 value = 684
 
 [State 0, Helper Die]

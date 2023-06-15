@@ -123,13 +123,13 @@ Palette = 0 ; Jose&Carlos Exclusive
 ControlPartner = 0 ; Jose&Carlos Exclusive
 
 switchX = 0 ; NOLL EXCLUSIVE: Used to track X position of switch 
-switchY = ; NOLL EXCLUSIVE: Used to track Y position of switch 
+switchY = 0; NOLL EXCLUSIVE: Used to track Y position of switch 
 pbladedirectionHeld = 0 ;NOLL EXCLUSIVE: Saves the direction held as an integer. 0 = None, 1 = Forward, 2 = Backward, 3 = Down, 4 = Up
 AbilityBubble = 0  ; for korby **UNUSED**
 Has6C = 0  ; for korby
 Has4C = 0  ; for korby
 damagesave = 0 ; for korby
-AbilityMultiplier = 1.2 ; damage multiplier for abilities
+AbilityMultiplier = 1.2 ; damage multiplier for abilities **UNUSED**
 
 
 ;---------------------------------------------------------------------------
@@ -1627,7 +1627,7 @@ triggerall = map(juggle) < 100
 trigger1 = 1
 attr = S, NA
 animtype  = Hard
-damage    = 35
+damage    = 40
 hitflag = MAFD
 guardflag = MA
 pausetime = 12,12
@@ -1639,8 +1639,10 @@ guard.sparkno = 13000
 sparkxy = -8,-25
 hitsound   = S0,5
 guardsound = 6,11
+guard.slidetime = 15
+guard.hittime = 15
 ground.type = Low
-ground.slidetime = 25
+ground.slidetime = 20
 ground.velocity = -2,-7
 air.velocity = -2, -7
 Fall = 1
