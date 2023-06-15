@@ -241,7 +241,6 @@ ctrl = 1
 [State 1000, 6]
 type = ChangeState
 trigger1 = var(19) = 5
-triggerall = !numhelper(506) = 0
 triggerall = numhelper(506) > 0
 triggerall = helper(506),stateno != 684 && helper(506),prevstateno != 684 ; Disables use after switching
 value = 509
@@ -1283,7 +1282,7 @@ triggerall = !movecontact
 trigger1 = 1
 attr = A, HA
 animtype  = Light
-damage    = 50
+damage    = 60
 hitflag = MAFD
 guardflag = MA
 pausetime = 0,0
@@ -6463,7 +6462,7 @@ ctrl = 1
 
 [State 0, ChangeState Switch] ; Used when Noll switches
 type = ChangeState
-trigger1 = root,prevstateno = 509 && root,movetype != H
+trigger1 = root,stateno = 509 && root,movetype != H
 value = 684
 
 [State 0, Helper Die]
@@ -8374,6 +8373,7 @@ trigger1 = command = "back"
 trigger2 = command = "holdback"
 value = 105
 ctrl = 0
+
 [State 200, SPRINT]
 type = ChangeState
 triggerall = time = [26,36]

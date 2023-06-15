@@ -1319,7 +1319,7 @@ volumescale = 300
 
 [State 0, Helper]
 type = Helper
-trigger1 = time = 0
+trigger1 = time = 45
 helpertype = normal ;player
 name = "BOOM"
 stateno = 27005

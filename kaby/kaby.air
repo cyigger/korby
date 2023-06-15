@@ -5657,7 +5657,6 @@ LoopStart
 
 ; Special 5 Crash 2
 [Begin Action 27005]
--1,0, 0,0, 45
 Clsn1: 1
   Clsn1[0] = -26, -49, 24, 1
 31,18, 0,-23, 5, , , 0.8,0.8

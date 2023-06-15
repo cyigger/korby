@@ -1,4 +1,4 @@
-;---------------------- Integer variable list ----------------------
+; I----------------------
 
 ; var(0):= 1003 - Hard Knockdown - hit ground from fall, 1005 - Hard Knockdown - Lying Down, 40 - Jump Start, 45 - AirJump Start, 50 - Jump Up, 132 - Air guard (guarding), 155 - Air guard hit (knocked away), 5080 - Downed get-hit (shaking), 5081 - Downed get-hit (knocked back), 5100 - Downed get-hit (hit ground from fall), 5110 - Downed get-hit (lying down)
 ; var(2):= -3, 5000 - Stand get-hit (shaking), 5010 - Crouch get-hit (shaking), 5020 - Air get-hit (shaking)
