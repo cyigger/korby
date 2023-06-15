@@ -237,19 +237,13 @@ triggerall = numhelper(496) = 0
 triggerall = numhelper(498) = 0 
 value = 495
 ctrl = 1
-;Noll
+;noll
 [State 1000, 6]
 type = ChangeState
 trigger1 = var(19) = 5
 triggerall = numhelper(506) > 0
 triggerall = helper(506),stateno != 684 && helper(506),prevstateno != 684 ; Disables use after switching
 value = 509
-ctrl = 1
-[State 1000, 6]
-type = ChangeState
-trigger1 = var(19) = 5
-triggerall = numhelper(502) = 0
-value = 499
 ctrl = 1
 ;Saito
 [State 1000, 6]
@@ -5709,51 +5703,24 @@ map = "helperHit"
 value = movehit
 
 
-[State -2, Counterhit Proration Scale - Helper] ;Whenever the player counterhits, give them negative proration, only works for first hit in combo
+[State -2, Counterhit TSP]
 type = Helper
-Triggerall = numhelper(1020) = 0
+Triggerall = numhelper(4020) = 0
 trigger1 = movecountered
 helpertype = normal 
-name = "Counterhit Proration Scale"
-ID = 1020
-stateno = 1020
-postype = p1    ;p2,front,back,left,right
-facing = 1
-keyctrl = 0
-ownpal = 1
-
-[State -2, Counterhit Bass Drop Sound - Helper]
-type = Helper
-Triggerall = numhelper(1021) = 0 && stateno != 700
-trigger1 = movecountered
-helpertype = normal 
-name = "Counterhit Sound"
-ID = 1021
-stateno = 1021
+name = "Counterhit TSP"
+supermovetime = 999999999999
+pausemovetime = 999999999999
+ignorehitpause = 1
+persistent = 0
+ID = 4020
+stateno = 4020
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
 ownpal = 1
 ignorehitpause = 1
-
-[State 0, Counterhit Text Display]
-type = LifebarAction
-trigger1 = MoveCountered = 1 && root, map(_kbbsys_actionMoveCounteredFlag) = 0
-spr = Const(MsgCounterHit), 0
-snd = 25,0
 persistent = 0
-
-[State 0, Counterhit Map Modify]
-type = RootMapSet
-trigger1 = (MoveCountered = 1 && root,MoveCountered = 1) && root, map(_kbbsys_actionMoveCounteredFlag) = 0
-map = "_kbbsys_actionMoveCounteredFlag"
-value = 1
-
-[State 0, Counterhit Map Reset]
-type = RootMapSet
-trigger1 = (MoveCountered = 0 && root,MoveCountered = 0) && root, map(_kbbsys_actionMoveCounteredFlag) = 1
-map = "_kbbsys_actionMoveCounteredFlag"
-value = 0
 
 
 [State 1010, Helper Attack Scale]
@@ -5971,6 +5938,18 @@ poweradd = -200
 velset = 0,0
 sprpriority = 1
 
+[State 470, MapSet] ; Saves Noll's X position
+type = MapSet
+trigger1 = time = 0
+map = "switchX"
+value = pos x
+
+[State 470, MapSet] ; Saves Noll's Y position
+type = MapSet
+trigger1 = time = 0
+map = "switchY"
+value = pos y
+
 [State 0, Pause]
 type = Pause
 trigger1 = AnimElem = 3
@@ -6001,17 +5980,7 @@ trigger1 = Animelem = 3
 x = 3
 y = -3
 
-[State 470, MapSet] ; Saves Noll's X position
-type = MapSet
-trigger1 = time = 0
-map = "switchX"
-value = pos x
 
-[State 470, MapSet] ; Saves Noll's Y position
-type = MapSet
-trigger1 = time = 0
-map = "switchy"
-value = pos y
 
 [State 0, PosSet]
 type = PosSet
@@ -6462,7 +6431,7 @@ ctrl = 1
 
 [State 0, ChangeState Switch] ; Used when Noll switches
 type = ChangeState
-trigger1 = root,stateno = 509 && root,movetype != H
+trigger1 = root,stateno = 509 && root,animelem = 3
 value = 684
 
 [State 0, Helper Die]
@@ -6663,8 +6632,9 @@ ctrl = 0
 
 [State 0, ChangeState Switch] ; Used when Noll switches
 type = ChangeState
-trigger1 = root,prevstateno = 509 && root,movetype != H
+trigger1 = root,stateno = 509 && root,animelem = 3
 value = 684
+
 
 [State 0, Helper Die]
 type = DestroySelf
@@ -6966,8 +6936,9 @@ ctrl = 1
 
 [State 0, ChangeState Switch] ; Used when Noll switches
 type = ChangeState
-trigger1 = root,prevstateno = 509 && root,movetype != H
+trigger1 = root,stateno = 509 && root,animelem = 3
 value = 684
+
 
 [State 0, Helper Die]
 type = DestroySelf
@@ -7196,8 +7167,9 @@ ctrl = 1
 
 [State 0, ChangeState Switch] ; Used when Noll switches
 type = ChangeState
-trigger1 = root,prevstateno = 509 && root,movetype != H
+trigger1 = root,stateno = 509 && root,animelem = 3
 value = 684
+
 [State 0, Helper Die]
 type = DestroySelf
 trigger1 = time = 700
@@ -7413,8 +7385,9 @@ ctrl = 1
 
 [State 0, ChangeState Switch] ; Used when Noll switches
 type = ChangeState
-trigger1 = root,prevstateno = 509 && root,movetype != H
+trigger1 = root,stateno = 509 && root,animelem = 3
 value = 684
+
 
 [State 0, Helper Die]
 type = DestroySelf
@@ -7429,11 +7402,6 @@ physics = N
 juggle  = 2
 anim = 506
 sprpriority = 3
-
-[State 0, AttackDist]
-type = AttackDist
-trigger1 = 1
-value = 60
 
 [State 0, Juggle Map]
 type = RootMapAdd

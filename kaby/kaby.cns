@@ -115,6 +115,13 @@ enableDHC = 0; used to enable DHC in tag mode. 0 disables DHC, 1 enables DHC.
 disableTag = 0 ; Disables tagging when this map is set to 1
 burn = 0  ; Tracks how many burn stacks this character has (Inflicted by Jay)
 
+SavedX = 0 ; Jose&Carlos Exclusive
+SavedY = 0 ; Jose&Carlos Exclusive
+VelX = 0 ; Jose&Carlos Exclusive
+VelY = 0 ; Jose&Carlos Exclusive
+Palette = 0 ; Jose&Carlos Exclusive
+ControlPartner = 0 ; Jose&Carlos Exclusive
+
 switchX = 0 ; NOLL EXCLUSIVE: Used to track X position of switch 
 switchY = ; NOLL EXCLUSIVE: Used to track Y position of switch 
 pbladedirectionHeld = 0 ;NOLL EXCLUSIVE: Saves the direction held as an integer. 0 = None, 1 = Forward, 2 = Backward, 3 = Down, 4 = Up
@@ -1465,7 +1472,7 @@ triggerall = numhelper(3500) = 0
 Triggerall = power >= 1000
 trigger1 = command = "SPECIAL 1"
 value = 21000
-[State 200, SPECIAL 1 - Hammer]
+[State 200, SPECIAL 2 - Hammer]
 type = ChangeState
 Triggerall = movecontact
 triggerall = numhelper(3500) = 0
@@ -1474,13 +1481,13 @@ trigger1 = command = "SPECIAL 2"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 22000
 
-[State 200, SPECIAL 3 - CRASH]
+[State 200, SPECIAL 3 - Cutter] ;why was crash here
 type = ChangeState
 Triggerall = movecontact
 triggerall = numhelper(3500) = 0
 Triggerall = power >= 1000
-trigger1 = command = "SPECIAL 4"
-value = 27000
+trigger1 = command = "SPECIAL 3"
+value = 26000
 
 [State 200, SPECIAL 5 - Spit out]
 type = ChangeState
@@ -2295,6 +2302,7 @@ ctrl = 1
 [State 300, End]
 type = ChangeState
 trigger1 = command = "b"
+trigger1 = anim != 390
 trigger1 = movecontact
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 611
@@ -2315,6 +2323,7 @@ Triggerall = movecontact
 triggerall = numhelper(3500) = 0
 Triggerall = power >= 1000
 trigger1 = command = "SPECIAL 3"
+trigger1 = anim != 390
 value = 26000
 
 [State 200, End]
@@ -2857,7 +2866,7 @@ triggerall = map(juggle) < 100
 trigger1 = 1
 attr = S, NP
 animtype  = Heavy 
-damage    = ifelse(enemy,movetype = A,100,50)
+damage    = ifelse(enemy,movetype = A,120,60)
 Hitflag = MAFD
 guardflag = MA
 pausetime = 25,30
@@ -2870,11 +2879,11 @@ guardsound = 6,11
 ground.type = High
 ground.slidetime = 12
 ground.hittime  = 15
-ground.velocity = 7,5
+ground.velocity = 12,5
 guard.hittime  = 21
 guard.slidetime = 25
 guard.velocity = -20
-air.velocity = 7,4
+air.velocity = 12,4
 airguard.velocity = -7,-5
 Fall = 1
 Envshake.time = 30

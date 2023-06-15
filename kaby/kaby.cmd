@@ -922,7 +922,7 @@ triggerall = numhelper(3500) = 0
 triggerall = command = "holddown"
 Triggerall = statetype != A
 triggerall = command = "c"
-Triggerall = power >= 250
+Triggerall = power >= 200
 trigger1 = ctrl
 ;---------------------------------------------------------------------------
 ; Down + C
