@@ -995,11 +995,40 @@ stateno = 20010
 [State 210, 2]
 type = HitDef
 triggerall = !movecontact
+triggerall = ((enemy,prevstateno = 40 || enemy,prevstateno = 60 || enemy,stateno = 105) && enemy,time >= 5)
 trigger1 = enemy,anim != 40
 attr = S, NT
 animtype  = Hard
 damage    = 0
 hitflag = MAFD
+pausetime = 0,0
+numhits = 0
+sparkno = -1
+sparkxy = -2,-30
+guardsound = S6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 20
+guard.velocity = 4
+airguard.velocity = 4,-.5
+p2facing = 1
+p2stateno = 902
+p1stateno = 402
+p2getp1state = 1
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+kill = 0
+p2facing = 1
+
+[State 210, 2]
+type = HitDef
+triggerall = !movecontact
+triggerall = !((enemy,prevstateno = 40 || enemy,prevstateno = 60 || enemy,stateno = 105) && enemy,time >= 5)
+trigger1 = enemy,anim != 40
+attr = S, NT
+animtype  = Hard
+damage    = 0
+hitflag = MFD
 pausetime = 0,0
 numhits = 0
 sparkno = -1
