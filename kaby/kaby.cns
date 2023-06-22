@@ -606,7 +606,7 @@ Fall = 0
 
 [State 200, End]
 type = ChangeState
-triggerall = movehit || AnimTime  > -5
+triggerall = movehit || AnimTime  > -7
 trigger1 = command = "WD" && command != "NotWD"
 value = 30
 
