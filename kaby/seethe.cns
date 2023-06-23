@@ -208,6 +208,12 @@ type    = S
 movetype= I
 physics = S
 
+[State 0, Turn]
+type = Turn
+triggerall = p2dist x < 0
+trigger1 = prevstateno = 210
+persistent = 0
+
 ; Glitch
 [State 1000, 6]
 type = ChangeState
@@ -335,6 +341,12 @@ type    = S
 movetype= I
 physics = S
 
+[State 0, Turn]
+type = Turn
+triggerall = p2dist x < 0
+trigger1 = prevstateno = 210
+persistent = 0
+
 ;Jodie
 [State 1000, 6]
 type = ChangeState
@@ -389,6 +401,12 @@ ctrl = 1
 type    = S
 movetype= I
 physics = S
+
+[State 0, Turn]
+type = Turn
+triggerall = p2dist x < 0
+trigger1 = prevstateno = 210
+persistent = 0
 
 [State 1000, 6]
 type = ChangeState
@@ -661,6 +679,12 @@ ctrl = 1
 type    = S
 movetype= I
 physics = S
+
+[State 0, Turn]
+type = Turn
+triggerall = p2dist x < 0
+trigger1 = prevstateno = 210
+persistent = 0
 
 [State 0, VelSet if coming from wavedash]
 type = VelAdd
