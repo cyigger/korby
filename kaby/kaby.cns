@@ -830,7 +830,7 @@ type = ChangeState
 ;trigger1 = command = "b" &&  movehit
 trigger1 = command = "b" &&  movecontact ;&& time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 320
+value = 300
 
 [State 300, End]
 type = ChangeState
@@ -1552,13 +1552,13 @@ trigger1 = var(19)  > 0
 trigger1 = command = "SPECIAL 5"
 value = 20000
 
-[State 300, End]
-type = ChangeState
-triggerall = prevstateno != 653
-triggerall = movecontact
-trigger1 = command = "a"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 210
+;[State 300, End]
+;type = ChangeState
+;triggerall = prevstateno != 653
+;triggerall = movecontact
+;trigger1 = command = "a"
+;trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
+;value = 210
 
 [State 200, 1]
 type = ChangeState
@@ -1704,8 +1704,8 @@ guard.slidetime = 15
 guard.hittime = 15
 ground.type = Low
 ground.slidetime = 20
-ground.velocity = -2,-7
-air.velocity = -2, -7
+ground.velocity = -2,-6
+air.velocity = -2, -6.5
 Fall = 1
 fall.recovertime = 40
 
@@ -2673,6 +2673,13 @@ Envshake.time = 15
 Fall.recovertime = 35 + ifelse(enemy,movetype = A, 7,0)
 fall.recover = 1
 
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = command = "holdup" && movecontact && var(3) = 0 
+trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100) && movecontact && var(3) = 0 
+value = 45
+ctrl = 1
+
 
 [State 200, SPECIAL 3 - CUTTER]
 type = ChangeState
@@ -2784,6 +2791,13 @@ airguard.velocity = -2,-4
 Fall = 0
 Envshake.time = 15
 Fall.recovertime = 50 + ifelse(enemy,movetype = A, 7,0)
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = command = "holdup" && movecontact && var(3) = 0 
+trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100) && movecontact && var(3) = 0 
+value = 45
+ctrl = 1
 
 [State 200, SPECIAL 3 - CUTTER]
 type = ChangeState
@@ -3372,6 +3386,13 @@ Envshake.time = 0
 Fall.recovertime = 20 + ifelse(enemy,movetype = A, 10,0)
 guard.cornerpush.veloff = -5
 airguard.cornerpush.veloff = -4
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = command = "holdup" && movecontact && var(3) = 0 
+trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100) && movecontact && var(3) = 0 
+value = 45
+ctrl = 1
 
 [State 200, SPECIAL 3 - CUTTER]
 type = ChangeState
