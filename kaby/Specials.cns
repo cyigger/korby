@@ -1494,33 +1494,33 @@ ampl = 2
 type = MapSet
 trigger1 = 1
 map = "busterable"
-value = 1
+value = 0
 ignorehitpause = 1
 
 [State 200, 1]
 type = HitDef
 getpower = 0
-triggerall = !movecontact && time <= 183
-trigger1 = 1
+triggerall = time%3 = 0 && time <= 183
+trigger1 = hitcount <= 38
 attr = S, HA
 animtype  = Light
-damage    = 300 ; hello moto
+damage    = 8 ; buu really really hate you
 hitflag = MAFD
 guardflag = MA
-pausetime = 0,180
-guard.pausetime = 0,100
-sparkno = 15000
+pausetime = 0,2
+guard.pausetime = 0,8
+sparkno = 150004
 guard.sparkno = 13000
 sparkxy = -8,-25
-hitsound   = S0,1
+hitsound   = S0,7876465
 guardsound = 6,0
 ground.type = High
 ground.slidetime = 12
 p1sprpriority = 1
 ground.hittime  = 15 + ifelse(enemy,movetype = A || movecountered, 7,0)
-ground.velocity = 0,0
+ground.velocity = 1,-6
 guard.velocity = 5
-air.velocity = 0,0
+air.velocity = 1,-6
 Fall = 1
 kill = 0
 fall.recover =  0
@@ -1882,7 +1882,7 @@ value = 0
 
 [State 0, TargetBind]
 type = TargetBind
-trigger1 = time <= 50
+trigger1 = time <= 50 && movehit
 id = -1
 pos = 0,0
 
@@ -2047,6 +2047,31 @@ type = ChangeState
 trigger1 = Time = 15
 value = 501
 ctrl = 1
+
+;---------------------------------------------------------------------------
+; MY ABILITY!!
+[Statedef 45000]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+velset = 0,0
+anim = 20005
+ctrl = 0
+sprpriority = 2
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1 ; im too lazy to make this look good so the star will just fly off
+x = -10
+y = -4
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 =  time = 50
+;ignorehitpause = 
+;persistent = 
+
 
 ;---------------------------------------------------------------------------
 

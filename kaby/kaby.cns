@@ -129,7 +129,7 @@ AbilityBubble = 0  ; for korby **UNUSED**
 Has6C = 0  ; for korby
 Has4C = 0  ; for korby
 damagesave = 0 ; for korby
-AbilityMultiplier = 1.2 ; damage multiplier for abilities **UNUSED**
+AbilityMultiplier = 1 ; damage multiplier for abilities
 
 
 ;---------------------------------------------------------------------------
@@ -833,6 +833,13 @@ anim = 220
 poweradd = 0
 sprpriority = 2
 
+[State 0, FatalCounter]
+type = MapSet
+trigger1 = 1
+map = "fatal"
+value = 1
+ignorehitpause = 1
+
 [State 0, VelSet]
 type = VelSet
 trigger1 = AnimElem = 1 
@@ -884,10 +891,10 @@ triggerall = !movecontact
 trigger1 = 1
 attr = S, NA
 animtype  = Light
-damage    = 20
+damage    = ifelse(enemy,movetype = A, 40,20)
 hitflag = MAF
 guardflag = M
-pausetime = 8,10
+pausetime = ifelse(enemy,movetype = A, 16,8),ifelse(enemy,movetype = A, 20,10)
 ground.hittime  = 15
 air.hittime = 25 + ifelse(enemy,movetype = A, 12,0)
 guard.pausetime = 12,18
@@ -1180,7 +1187,7 @@ animtype  = Heavy
 damage    = ifelse(enemy,movetype = A,60,9)
 hitflag = MAFD
 guardflag = MA
-pausetime = 7,10
+pausetime = ifelse(enemy,movetype = A,14,7),ifelse(enemy,movetype = A,20,10)
 ground.hittime  = 40
 air.hittime = 45
 guard.pausetime = 6,4
@@ -3832,6 +3839,126 @@ persistent = 0
 
 
 [Statedef -3]
+
+
+[State 0, Ability]
+type = Explod
+ownpal = 1
+trigger2 = gethitvar(damage) >= 75 
+trigger1 = enemy,movecountered && enemy,map(fatal) = 1
+triggerall = var(19) != 0 
+triggerall = teamside = 1 ;p1 side
+triggerall = teammode = single || (teammode = tag && roundstate = 2)
+triggerall = numExplod(9500) = 0
+triggerall = stateno != 20010
+triggerall = map(hitOverride) =! 1
+anim = 9500
+ID = 9500
+pos = 147.3,147.8
+postype = left  ;p2,front,back,left,right
+sprpriority = -1
+removetime =  72 + gethitvar(hittime) + 45
+scale = 0.75,0.75
+space = screen
+ignorehitpause = 1
+supermovetime = 99999999999999999999999
+pausemovetime = 99999999999999999999999
+
+
+
+[State 0, Ability]
+type = Explod
+ownpal = 1
+trigger2 = gethitvar(damage) >= 75 && numExplod(9500) = 1 
+trigger1 = enemy,movecountered && enemy,map(fatal) = 1
+triggerall = var(19) != 0 
+triggerall = teamside = 2 ;p2 side
+triggerall = teammode = single || (teammode = tag && roundstate = 2)
+triggerall = numExplod(9500) = 0
+triggerall = stateno != 20010
+triggerall = map(hitOverride) =! 1
+anim = 9500
+ID = 9500
+pos = 171.5,147.8
+postype = right  ;p2,front,back,left,right
+sprpriority = -1
+removetime = 72 + gethitvar(hittime) + 45
+scale = 0.75,0.75
+space = screen
+ignorehitpause = 1
+supermovetime = 99999999999999999999999
+pausemovetime = 99999999999999999999999
+
+
+
+[State 0, Helper]
+type = Helper
+trigger2 = enemy,map(fatal) = 1
+trigger1 = gethitvar(damage) >= 75
+triggerall = movetype = H
+trigger2 = enemy,movecountered
+triggerall = numhelper(45000) = 0
+triggerall = stateno != 20010
+triggerall = map(hitOverride) = 0
+triggerall = var(19) != 0 
+helpertype = normal ;player
+name = "STAR"
+stateno = 45000
+ID = 45000
+pos = 10,-20
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+supermovetime = 0
+pausemovetime = 0
+
+[State 1200, 6]
+type = explod
+trigger2 = enemy,map(fatal) = 1
+trigger1 = gethitvar(damage) >= 75
+triggerall = movetype = H
+trigger2 = enemy,movecountered
+triggerall = numexplod(6955) = 0
+triggerall = stateno != 20010
+triggerall = map(hitOverride) = 0
+triggerall = var(19) != 0
+anim = 6955
+id = 6955
+pos = 10,-60
+facing = 0
+scale = .5,.5
+postype = p1
+sprpriority = 3
+removetime = 37
+bindtime  = 37
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = enemy,map(fatal) = 1 ; got fatal? LOSE ABILITY
+trigger1 = movetype = H 
+triggerall = enemy,movecountered
+triggerall = stateno != 20010
+triggerall = map(hitOverride) = 0
+v = 19    ;fv = 10
+value = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = gethitvar(damage) >= 75; did more than 74 damage? LOSE ABILITY
+trigger1 = movetype = H 
+triggerall = stateno != 20010
+triggerall = map(hitOverride) = 0
+v = 19    ;fv = 10
+value = 0
+ignorehitpause = 1
+persistent = 0
+
 ;violet
 ;-----------------
 [State 0, VarSet]
