@@ -830,7 +830,7 @@ type = ChangeState
 ;trigger1 = command = "b" &&  movehit
 trigger1 = command = "b" &&  movecontact ;&& time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 300
+value = 310
 
 [State 300, End]
 type = ChangeState
@@ -1656,7 +1656,7 @@ trigger1 = movehit
 v = 11
 ignorehitpause = 1
 persistent = 0
-value =  ifelse(prevstateno = 653,50,10)
+value =  ifelse(prevstateno = 653,50,5)
 
 [State 0, VelSet]
 type = PosSet
@@ -2628,7 +2628,7 @@ trigger1 = movehit
 v = 11
 ignorehitpause = 1
 persistent = 0
-value = 5
+value = 3
 
 [State 0, Juggle Map]
 type = MapAdd
@@ -2748,7 +2748,7 @@ trigger1 = movehit
 v = 11
 ignorehitpause = 1
 persistent = 0
-value = 5
+value = 3
 
 [State 0, Juggle Map]
 type = MapAdd
