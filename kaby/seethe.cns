@@ -404,6 +404,13 @@ trigger1 = var(19) = 10
 value = 685
 ctrl = 1
 
+;nothing found, check neutral next
+[State 1000, 6]
+type = ChangeState
+trigger1 = 1
+value = 400
+ctrl = 1
+
 ;========================
 ;Back + C Air
 ;========================
