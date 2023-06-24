@@ -1878,10 +1878,19 @@ velset = 0,0
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 200
+triggerall = var(2) >= 30 && var(2) <= 50
 trigger1 = Time = 0
-value = S200,4+(random<500)*1
-volumescale = 200
+value = S200,4
+volumescale = 100
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 100 && var(2) <= 105
+triggerall = gethitvar(damage) >= 40
+trigger1 = Time = 0
+value = S200,5
+volumescale = 100
 channel = 1
 
 [State 5000, VelSet] ;Fixes sliding issues caused by PlayerPush changing
@@ -2013,10 +2022,19 @@ velset = 0,0
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 200
+triggerall = var(2) >= 30 && var(2) <= 50
 trigger1 = Time = 0
-value = S200,4+(random<500)*1
-volumescale = 200
+value = S200,4
+volumescale = 100
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 100 && var(2) <= 105
+triggerall = gethitvar(damage) >= 40
+trigger1 = Time = 0
+value = S200,5
+volumescale = 100
 channel = 1
 
 [State 5010, 1] ;Anim for HIT_LIGHT to HIT_HARD
@@ -2138,10 +2156,19 @@ velset = 0,0
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 200
+triggerall = var(2) >= 30 && var(2) <= 50
 trigger1 = Time = 0
-value = S200,4+(random<500)*1
-volumescale = 200
+value = S200,4
+volumescale = 100
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 100 && var(2) <= 105
+triggerall = gethitvar(damage) >= 40
+trigger1 = Time = 0
+value = S200,5
+volumescale = 100
 channel = 1
 
 [State 5020, 1] ;Anim for HIT_LIGHT to HIT_HARD
@@ -2441,10 +2468,19 @@ velset = 0,0
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 200
+triggerall = var(2) >= 30 && var(2) <= 50
 trigger1 = Time = 0
-value = S200,4+(random<500)*1
-volumescale = 200
+value = S200,4
+volumescale = 100
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 100 && var(2) <= 105
+triggerall = gethitvar(damage) >= 40
+trigger1 = Time = 0
+value = S200,5
+volumescale = 100
 channel = 1
 
 [State 5070, 1]
@@ -2498,10 +2534,18 @@ velset = 0,0
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 200
+triggerall = var(2) >= 30 && var(2) <= 55
 trigger1 = Time = 0
-value = S200,4+(random<500)*1
-volumescale = 200
+value = S200,4
+volumescale = 100
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 100 && var(2) <= 140
+trigger1 = Time = 0
+value = S200,5
+volumescale = 100
 channel = 1
 
 [State 5080, 1] ;Set default anim

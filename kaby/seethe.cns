@@ -956,7 +956,7 @@ id = 143
 type = PlaySnd
 trigger1 =  AnimElem = 2
 value = S200,21
-volumescale = 150
+volumescale = 80
 channel = 1
 
 [State 0, PlaySnd]
@@ -1128,7 +1128,7 @@ id = 143
 type = PlaySnd
 trigger1 =  AnimElem = 2
 value = S200,21
-volumescale = 150
+volumescale = 80
 channel = 1
 
 [State 0, PlaySnd]
@@ -6340,7 +6340,7 @@ value = 508
 type = ChangeState
 triggerall = !(helper(506), movehit) ; Landing recovery does not occur if you hit with j.5c
 trigger1 = vel y > 0 && pos y >= -15
-value = 405
+value = 406
 
 [State 200, End]
 type = ChangeState
@@ -18894,8 +18894,8 @@ ID = 80056
 stateno = 80056
 pos = 35,-15
 postype = p1
-size.xscale = map(AbilityMultiplier)
-size.yscale = map(AbilityMultiplier)
+size.xscale = 1.2
+size.yscale = 1.2
 facing = -1
 sprpriority = 5
 inheritJuggle = 1
@@ -19076,7 +19076,7 @@ trigger2 = parent,movetype = H
 
 
 ;-------------------------------------------------------------------------------
-; Wavedash C
+; Saito Wavedash C
 [Statedef 80060]
 type    = C
 movetype= A

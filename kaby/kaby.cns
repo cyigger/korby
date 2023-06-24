@@ -305,7 +305,7 @@ trigger1 = enemy,name != "KBB MK"
 trigger1 = enemy,name != "KBB MK Mod"
 trigger1 = enemy,name != "Dedede"
 value = S2002,28+(random<500)*1
-volumescale = 100
+volumescale = 75
 
 [State 0, Voice - ]
 type = PlaySnd
@@ -313,14 +313,14 @@ trigger1 = AnimElem = 15
 trigger1 =  enemy,name = "KBB MK"
 trigger2 =  enemy,name = "KBB MK Mod"
 value = S2002,0
-volumescale = 100
+volumescale = 75
 
 [State 0, Voice - ]
 type = PlaySnd
 trigger1 = AnimElem = 15
 trigger1 =  enemy,name = "Dedede"
 value = S2002,1
-volumescale = 100
+volumescale = 75
 
 [State 190, 1] ;Freeze animation until PreIntro is over
 type = ChangeAnim
@@ -1320,10 +1320,34 @@ value = 100
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 600
+triggerall = var(2) >= 10 && var(2) <= 25
 trigger1 = AnimElem = 1
-value = S200,0+(random<500)*1+(random<500)*1+(random<500)*1
-volumescale = 200
+value = S200,0
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 35 && var(2) <= 50
+trigger1 = AnimElem = 1
+value = S200,1
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 65 && var(2) <= 80
+trigger1 = AnimElem = 1
+value = S200,2
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 95 && var(2) <= 110
+trigger1 = AnimElem = 1
+value = S200,3
+volumescale = 100
 channel = 0
 
 [State 300, 1]
@@ -1453,11 +1477,38 @@ sprpriority = 2
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 600
+triggerall = var(2) >= 10 && var(2) <= 25
 triggerall = prevstateno != 653
 trigger1 = AnimElem = 1
-value = S200,0+(random<500)*1+(random<500)*1+(random<500)*1
-volumescale = 200
+value = S200,0
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 35 && var(2) <= 50
+triggerall = prevstateno != 653
+trigger1 = AnimElem = 1
+value = S200,1
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 65 && var(2) <= 80
+triggerall = prevstateno != 653
+trigger1 = AnimElem = 1
+value = S200,2
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 95 && var(2) <= 110
+triggerall = prevstateno != 653
+trigger1 = AnimElem = 1
+value = S200,3
+volumescale = 100
 channel = 0
 
 [State 0, Juggle Map]
@@ -1636,11 +1687,38 @@ persistent = 0
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 600
+triggerall = var(2) >= 10 && var(2) <= 30
 triggerall = prevstateno != 653
 trigger1 = AnimElem = 1
-value = S200,0+(random<500)*1+(random<500)*1+(random<500)*1
-volumescale = 200
+value = S200,0
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 35 && var(2) <= 55
+triggerall = prevstateno != 653
+trigger1 = AnimElem = 1
+value = S200,1
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 65 && var(2) <= 85
+triggerall = prevstateno != 653
+trigger1 = AnimElem = 1
+value = S200,2
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 95 && var(2) <= 115
+triggerall = prevstateno != 653
+trigger1 = AnimElem = 1
+value = S200,3
+volumescale = 100
 channel = 0
 
 [State 0, Juggle Map]
@@ -1719,7 +1797,7 @@ attr = S, NA
 animtype  = Heavy
 damage  = 100
 HitFlag = MAFD
-guardflag = MAFD
+guardflag = MA
 pausetime = 20,40
 sparkno = 2
 guard.sparkno = 13000
@@ -2486,9 +2564,9 @@ guardsound = 6,11
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 15 + ifelse(enemy,movetype = A, 7,0)
-ground.velocity = -2,-2
+ground.velocity = -2,-1
 air.velocity = -2,-2
-down.velocity = -2,-3
+down.velocity = -2,-2
 Fall = 1
 guard.cornerpush.veloff = -10
 airguard.cornerpush.veloff = -10
@@ -2727,10 +2805,34 @@ sprpriority = 2
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 600
+triggerall = var(2) >= 10 && var(2) <= 25
 trigger1 = AnimElem = 1
-value = S200,0+(random<500)*1+(random<500)*1+(random<500)*1
-volumescale = 200
+value = S200,0
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 35 && var(2) <= 50
+trigger1 = AnimElem = 1
+value = S200,1
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 65 && var(2) <= 80
+trigger1 = AnimElem = 1
+value = S200,2
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 95 && var(2) <= 110
+trigger1 = AnimElem = 1
+value = S200,3
+volumescale = 100
 channel = 0
 
 [State 0, PowerAdd]
@@ -2893,10 +2995,34 @@ ignorehitpause = 1
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 600
+triggerall = var(2) >= 10 && var(2) <= 25
 trigger1 = AnimElem = 1
-value = S200,0+(random<500)*1+(random<500)*1+(random<500)*1
-volumescale = 200
+value = S200,0
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 35 && var(2) <= 50
+trigger1 = AnimElem = 1
+value = S200,1
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 65 && var(2) <= 80
+trigger1 = AnimElem = 1
+value = S200,2
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 95 && var(2) <= 110
+trigger1 = AnimElem = 1
+value = S200,3
+volumescale = 100
 channel = 0
 
 [State 0, Damage Proration]
@@ -3152,10 +3278,34 @@ sprpriority = 2
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 200
+triggerall = var(2) >= 10 && var(2) <= 25
 trigger1 = AnimElem = 1
-value = S200,0+(random<500)*1+(random<500)*1+(random<500)*1
-volumescale = 200
+value = S200,0
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 35 && var(2) <= 50
+trigger1 = AnimElem = 1
+value = S200,1
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 65 && var(2) <= 80
+trigger1 = AnimElem = 1
+value = S200,2
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 95 && var(2) <= 110
+trigger1 = AnimElem = 1
+value = S200,3
+volumescale = 100
 channel = 0
 
 [State 0, PowerAdd]
@@ -3237,7 +3387,7 @@ ctrl = 1
 [Statedef 405]
 type    = A
 movetype= A
-physics = A
+physics = N
 juggle  = 3
 ctrl = 0
 anim = 405
@@ -3252,6 +3402,10 @@ value = 26005
 ;ignorehitpause = 
 ;persistent = 
 
+[State 200, Gravity]
+type = VelAdd
+trigger1 = 1
+y = 0.44
 
 [State 200, End];jjdrviuidb'ei eihhPWdibvWWkwoviw
 type = ChangeState
@@ -3335,10 +3489,34 @@ value = 5
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = random < 700
+triggerall = var(2) >= 10 && var(2) <= 25
 trigger1 = AnimElem = 1
-value = S200,0+(random<500)*1+(random<500)*1+(random<500)*1
-volumescale = 200
+value = S200,0
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 35 && var(2) <= 50
+trigger1 = AnimElem = 1
+value = S200,1
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 65 && var(2) <= 80
+trigger1 = AnimElem = 1
+value = S200,2
+volumescale = 100
+channel = 0
+
+[State 0, PlaySnd]
+type = PlaySnd
+triggerall = var(2) >= 95 && var(2) <= 110
+trigger1 = AnimElem = 1
+value = S200,3
+volumescale = 100
 channel = 0
 
 [State 0, PowerAdd]
@@ -4033,6 +4211,30 @@ value = 0
 ignorehitpause = 1
 persistent = 0
 
+;--------------------------------------------------------------------
+;Voice Variable
+[State 0, Resets variable if value is 150.]
+type = VarSet
+trigger1 = var(2) >= 150
+v = 2
+value = 0
+[State 0, Adds 1 value every frame after 5 seconds]
+type = VarAdd
+trigger1 = time >= 5
+v = 2
+value = 1
+[State 0, Adds 1 value every hit]
+type = VarAdd
+trigger1 = movecontact
+v = 2
+value = 1
+
+[State 0, Adds a random value between 1-10 every frame when being hit]
+type = VarAdd
+trigger1 = movetype = H
+v = 2
+value = random%10
+
 ;violet
 ;-----------------
 [State 0, VarSet]
@@ -4053,7 +4255,7 @@ value = 16
 type = PlaySnd
 trigger1 = enemy,name = "Dee" && Win && map(roundCount) = 2
 value = S200,22
-volumescale = 150
+volumescale = 100
 channel = 1
 
 ;hi
