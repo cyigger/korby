@@ -6356,7 +6356,7 @@ value = 508
 type = ChangeState
 triggerall = !(helper(506), movehit) ; Landing recovery does not occur if you hit with j.5c
 trigger1 = vel y > 0 && pos y >= -15
-value = 406
+value = 80052
 
 [State 200, End]
 type = ChangeState
@@ -6810,16 +6810,36 @@ poweradd = -200
 sprpriority = 2
 ctrl = 0
 
-[State 0, VelSet]
-type = VelSet
-trigger1 = animelem = 3
-x = 2
-
 [State 0, Swing]
 type = PlaySnd
 trigger1 = Animelem = 2
 value = S1,1
 volumescale = 80
+
+[State 0, VelSet]
+type = VelSet
+triggerall = statetype != S
+triggerall = command != "holdfwd"
+triggerall = command != "holdback"
+trigger1 = AnimElem = 1
+x = 0
+y = -5
+
+[State 0, VelSet]
+type = VelSet
+triggerall = statetype != S
+triggerall = command = "holdback"
+trigger1 = AnimElem = 1
+x = -3
+y = -5
+
+[State 0, VelSet]
+type = VelSet
+triggerall = statetype != S
+triggerall = command = "holdfwd"
+trigger1 = AnimElem = 1
+x = 3
+y = -5
 
 [State 0, Helper]
 type = Helper
@@ -11824,7 +11844,7 @@ volumescale = 999
 [State 0, VelSet]
 type = VelSet
 trigger1 = AnimElem = 2
-x = -map(AbilityMultiplier)5
+x = -1.25
 y = -2
 
 [State 0, Explod]
@@ -11940,7 +11960,7 @@ volumescale = 999
 [State 0, VelSet]
 type = VelSet
 trigger1 = AnimElem = 2
-x = -map(AbilityMultiplier)5
+x = -1.25
 y = -2
 
 
@@ -18823,6 +18843,31 @@ trigger2 = time >= 30
 value = 503
 ctrl = 0
 
+;-------------------------------------------------------------------------------
+; Custom Land
+[Statedef 80052]
+type = S
+movetype = I
+physics = S
+ctrl = 0
+anim = 80052
+sprpriority = 2
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = 1
+y = 0
+
+[State 493, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 
 ;-------------------------------------------------------------------------------
 ; Noll J.2C
@@ -19312,7 +19357,7 @@ value = 50
 ctrl = 1
 
 ;-----------------------------------------------------------------------------------
-;WD C - Fwd Follow Up
+;Saito WD C - Fwd Follow Up
 [Statedef 80061]
 type = A
 movetype = A
@@ -19442,7 +19487,7 @@ value = 50
 ctrl = 1
 
 ;---------------------------------------------------------------------------------
-;WD C - Down Follow Up
+;Saito WD C - Down Follow Up
 [Statedef 80062]
 type = A
 movetype = A
