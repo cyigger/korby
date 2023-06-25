@@ -4106,8 +4106,10 @@ persistent = 0
 [State 0, Ability]
 type = Explod
 ownpal = 1
-trigger2 = gethitvar(damage) >= 75 
 trigger1 = enemy,movecountered && enemy,map(fatal) = 1
+trigger2 = gethitvar(damage) >= 75 
+trigger2 = map(hitOverride) = 0
+triggerall = movetype = H
 triggerall = var(19) != 0 
 triggerall = teamside = 1 ;p1 side
 triggerall = teammode = single || (teammode = tag && roundstate = 2)
@@ -4130,8 +4132,10 @@ pausemovetime = 99999999999999999999999
 [State 0, Ability]
 type = Explod
 ownpal = 1
-trigger2 = gethitvar(damage) >= 75 && numExplod(9500) = 1 
 trigger1 = enemy,movecountered && enemy,map(fatal) = 1
+trigger2 = gethitvar(damage) >= 75
+trigger2 = map(hitOverride) = 0
+triggerall = movetype = H
 triggerall = var(19) != 0 
 triggerall = teamside = 2 ;p2 side
 triggerall = teammode = single || (teammode = tag && roundstate = 2)
@@ -4153,13 +4157,15 @@ pausemovetime = 99999999999999999999999
 
 [State 0, Helper]
 type = Helper
-trigger2 = enemy,map(fatal) = 1
 trigger1 = gethitvar(damage) >= 75
-triggerall = movetype = H
+trigger1 = map(hitOverride) = 0
 trigger2 = enemy,movecountered
+trigger2 = enemy,map(fatal) = 1
+triggerall = movetype = H
 triggerall = numhelper(45000) = 0
 triggerall = stateno != 20010
 triggerall = var(19) != 0 
+
 helpertype = normal ;player
 name = "STAR"
 stateno = 45000
@@ -4174,10 +4180,11 @@ pausemovetime = 0
 
 [State 1200, 6]
 type = explod
-trigger2 = enemy,map(fatal) = 1
 trigger1 = gethitvar(damage) >= 75
-triggerall = movetype = H
+trigger1 = map(hitOverride) = 0
+trigger2 = enemy,map(fatal) = 1
 trigger2 = enemy,movecountered
+triggerall = movetype = H
 triggerall = numexplod(6955) = 0
 triggerall = stateno != 20010
 triggerall = var(19) != 0
@@ -4196,11 +4203,12 @@ persistent = 0
 
 [State 0, VarSet]
 type = VarSet
-trigger1 = enemy,map(fatal) = 1 ; got fatal? LOSE ABILITY
-trigger2 = gethitvar(damage) >= 75
 triggerall = movetype = H 
-triggerall = enemy,movecountered
-triggerall = stateno != 20010
+trigger1 = enemy,map(fatal) = 1 ; got fatal? LOSE ABILITY
+trigger1 = enemy,movecountered
+trigger1 = stateno != 20010
+trigger2 = gethitvar(damage) >= 75 ; took over 74 damage? LOSE ABILITY
+trigger2 = map(hitOverride) = 0
 v = 19    ;fv = 10
 value = 0
 persistent = 0
