@@ -58,7 +58,7 @@ LoopStart
 ; Stand
 [Begin Action 2]
 Clsn2Default: 1
-  Clsn2[0] = -22, -36, 19, -1
+  Clsn2[0] = -22, -36, 19, 0
 0,20, 0,0, 80
 Clsn2Default: 1
   Clsn2[0] = -22, -36, 19, -1
@@ -828,7 +828,7 @@ Clsn2: 1
 0,243, 0,0, 2, , , 1.2,0.8
 Clsn2: 1
   Clsn2[0] = -22, -35, 20, 1
-0,243, 0,0, 15
+0,243, 0,0, 6
 
 ; Inhale FX
 [Begin Action 407]
@@ -4396,7 +4396,7 @@ Clsn2: 1
 [Begin Action 2855]
 Clsn2: 1
   Clsn2[0] = -27, -29, 22, 1
-11,58, 0,0, 10
+11,58, 0,-6, 10
 
 ; Sword | Block
 [Begin Action 2860]

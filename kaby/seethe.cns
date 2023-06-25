@@ -111,78 +111,75 @@ value = 0
 
 ;---------------------------------------------------------------------------
 ; PS
-[State 2121,]
-type = VarSet
-trigger1 = p2name = "kaby"
-var(19) = 0
+
 
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Glitch"
+trigger1 = enemy,name = "Glitch"
 var(19) = 1
 
 ; Glitch
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Aege"
+trigger1 = enemy,name = "Aege"
 var(19) = 2
 
 ; Aege
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Fly"
+trigger1 = enemy,name = "Fly"
 var(19) = 3
 
 ; Fly
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Max"
+trigger1 = enemy,name = "Max"
 var(19) = 4
 
 ; Max
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Noll"
+trigger1 = enemy,name = "Noll"
 var(19) = 5
 
 ; Noll
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Saito"
+trigger1 = enemy,name = "Saito"
 var(19) = 6
 
 ; Saito
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Jodie"
+trigger1 = enemy,name = "Jodie"
 var(19) = 7
 
  ; Jodie
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Yoru"
+trigger1 = enemy,name = "Yoru"
 var(19) = 8
 
  ; Yoru
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Violet"
+trigger1 = enemy,name = "Violet"
 var(19) = 9
 ;Bill
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Bill"
+trigger1 = enemy,name = "Bill"
 var(19) = 10
 ;Jay
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Jay"
+trigger1 = enemy,name = "Jay"
 var(19) = 11
 
 ;Clutch
 [State 2121,]
 type = VarSet
-trigger1 = p2name = "Clutch"
+trigger1 = enemy,name = "Clutch"
 var(19) = 12
 ;---------------------------------------------------------------------------
 
@@ -1245,6 +1242,13 @@ anim = 5001
 sprpriority = -1
 velset = 0,0
 
+[State 2121,]
+type = VarSet
+trigger1 = name = "kaby" 
+trigger1 = time > 0
+trigger1 = enemy,stateno = 404
+var(19) = 0
+
 [State 0, Turn]
 type = Turn
 trigger1 = p2dist x < 0
@@ -1285,11 +1289,15 @@ type = PlayerPush
 trigger1 = 1
 value = 0
 
+
+
+
 [State 2125, ]
 type = ChangeState
 trigger1 = Time = 200
 value = 0
 ctrl = 0
+
 
 ;========================
 ;inhale p2
@@ -1439,6 +1447,12 @@ velset = 0,0
 anim = 404
 sprpriority = 2
 
+
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "kaby" && time = 0
+var(19) = enemy,var(19)
+
 [State 200, 1]
 type = HitDef
 triggerall = !movecontact
@@ -1449,7 +1463,7 @@ damage    = 0,0
 hitflag = MAFD
 guardflag = MA
 pausetime = 0,0
-sparkno = 00
+sparkno = 49857
 guard.sparkno = 00
 sparkxy = -8,-25
 hitsound   = S97,1
@@ -1464,6 +1478,8 @@ Fall = 1
 p2facing = 1
 fall.recover =  0
 Envshake.time = 10
+
+
 
 [State 200,p]
 type = ChangeState

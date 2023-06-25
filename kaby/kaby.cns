@@ -129,7 +129,7 @@ AbilityBubble = 0  ; for korby **UNUSED**
 Has6C = 0  ; for korby
 Has4C = 0  ; for korby
 damagesave = 0 ; for korby
-AbilityMultiplier = 1 ; damage multiplier for abilities
+AbilitySave = 0 ; its just for copying other korbies abilities
 
 
 ;---------------------------------------------------------------------------
@@ -153,7 +153,7 @@ victory5 = "And now, I will annihilate the mortals for the sake of justice."
 victory6 = "gg"
 victory7 = "That was rough."
 victory8 = "Well played."
-victory9 = "L"
+victory9 = "ok guys remember to like and subscribe "
 victory10 = "Knowing that you cannot win, you still persist... How truly foolish you are."
 victory11 = "mutt"
 victory12 = "Rejoice, you have reached the height of beauty at my hand."
@@ -1475,6 +1475,20 @@ anim = 310
 poweradd = 0
 sprpriority = 2
 
+
+
+[State 0, Turn]
+type = Turn
+triggerall = p2dist x < 0
+trigger1 = prevstateno = 210
+persistent = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = AnimElem = 2
+x = ifelse(prevstateno=210,12,6)
+y = 0
+
 [State 0, PlaySnd]
 type = PlaySnd
 triggerall = var(2) >= 10 && var(2) <= 25
@@ -1679,11 +1693,7 @@ poweradd = 0
 sprpriority = 2
 
 
-[State 0, Turn]
-type = Turn
-triggerall = p2dist x < 0
-trigger1 = prevstateno = 210
-persistent = 0
+
 
 [State 0, PlaySnd]
 type = PlaySnd
@@ -4103,7 +4113,6 @@ triggerall = teamside = 1 ;p1 side
 triggerall = teammode = single || (teammode = tag && roundstate = 2)
 triggerall = numExplod(9500) = 0
 triggerall = stateno != 20010
-triggerall = map(hitOverride) =! 1
 anim = 9500
 ID = 9500
 pos = 147.3,147.8
@@ -4128,7 +4137,6 @@ triggerall = teamside = 2 ;p2 side
 triggerall = teammode = single || (teammode = tag && roundstate = 2)
 triggerall = numExplod(9500) = 0
 triggerall = stateno != 20010
-triggerall = map(hitOverride) =! 1
 anim = 9500
 ID = 9500
 pos = 171.5,147.8
@@ -4151,7 +4159,6 @@ triggerall = movetype = H
 trigger2 = enemy,movecountered
 triggerall = numhelper(45000) = 0
 triggerall = stateno != 20010
-triggerall = map(hitOverride) = 0
 triggerall = var(19) != 0 
 helpertype = normal ;player
 name = "STAR"
@@ -4173,7 +4180,6 @@ triggerall = movetype = H
 trigger2 = enemy,movecountered
 triggerall = numexplod(6955) = 0
 triggerall = stateno != 20010
-triggerall = map(hitOverride) = 0
 triggerall = var(19) != 0
 anim = 6955
 id = 6955
@@ -4191,25 +4197,14 @@ persistent = 0
 [State 0, VarSet]
 type = VarSet
 trigger1 = enemy,map(fatal) = 1 ; got fatal? LOSE ABILITY
-trigger1 = movetype = H 
+trigger2 = gethitvar(damage) >= 75
+triggerall = movetype = H 
 triggerall = enemy,movecountered
 triggerall = stateno != 20010
-triggerall = map(hitOverride) = 0
 v = 19    ;fv = 10
 value = 0
 persistent = 0
 ignorehitpause = 1
-
-[State 0, VarSet]
-type = VarSet
-trigger1 = gethitvar(damage) >= 75; did more than 74 damage? LOSE ABILITY
-trigger1 = movetype = H 
-triggerall = stateno != 20010
-triggerall = map(hitOverride) = 0
-v = 19    ;fv = 10
-value = 0
-ignorehitpause = 1
-persistent = 0
 
 ;--------------------------------------------------------------------
 ;Voice Variable

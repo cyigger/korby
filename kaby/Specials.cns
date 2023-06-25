@@ -1372,49 +1372,6 @@ type = PosSet
 trigger1 = Time = 152
 y = 0
 
-
-
-
-
-[State 200, starburst]
-type = PosSet
-Triggerall =helper(27005),movecontact ; because it is a seperate thingy u cant starburst cancel that shit
-trigger1 = numhelper(51000) >= 1
-trigger1 = time >= 174
-trigger1 = power >= 500
-trigger1 = command = "FF"
-y = 0
-
-
-[State 200, starburst]
-type = VelSet
-Triggerall =helper(27005),movecontact ; because it is a seperate thingy u cant starburst cancel that shit
-trigger1 = numhelper(51000) >= 1
-trigger1 = time >= 174
-trigger1 = power >= 500
-trigger1 = command = "FF"
-y = 0
-
-
-[State 200, starburst]
-type = ChangeState
-Triggerall =helper(27005),movecontact ; because it is a seperate thingy u cant starburst cancel that shit
-trigger1 = numhelper(51000) >= 1
-trigger1 = time >= 174
-trigger1 = command = "FF"
-trigger1 = power >= 500
-value = 100
-ctrl = 1
-
-[State 200, starburst]
-type = PowerAdd
-Triggerall =helper(27005),movecontact ; because it is a seperate thingy u cant starburst cancel that shit
-trigger1 = numhelper(51000) >= 1
-trigger1 = time >= 174
-trigger1 = power >= 500
-trigger1 = command = "FF"
-value = -500
-
 [State 200, Neutral Reset]
 type = ChangeState
 Triggerall = time >= 244 && enemy, life >= 1
@@ -1482,6 +1439,20 @@ ownpal = 1
 ignorehitpause = 1
 persistent = 0
 
+[State 0, Helper]
+type = Helper
+trigger1 = movehit = 1
+helpertype = normal ;player
+name = "Power Delay"
+ID = 56000
+stateno = 56000
+pos = 9999,9999
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 0
+supermovetime = 0
+pausemovetime = 0
 
 [State 0, TIME START ENVSHAKE]
 type = EnvShake
@@ -2069,7 +2040,7 @@ sprpriority = 2
 [State 0, VelSet]
 type = VelSet
 trigger1 = 1 ; im too lazy to make this look good so the star will just fly off
-x = -10
+x = -8
 y = -4
 
 [State 0, DestroySelf]

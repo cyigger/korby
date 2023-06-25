@@ -4,7 +4,7 @@
 ; Player information
 [Info]
 name = "kaby"        ;Name of character
-displayname = "Korby" ;Name of character to display
+displayname = "Korby" ;Name of character to display ;most heartbreaking korby change
 versiondate = 3/12/2022   ;Version date of character
 mugenversion = 1.1  ;Version of M.U.G.E.N character works on
 ikemenVersion = 0.98
