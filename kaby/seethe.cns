@@ -1187,7 +1187,8 @@ triggerall = !movecontact
 trigger1 = 1
 attr = A, NA
 animtype  = Up
-damage    = 0
+damage    = 10
+numhits = 0
 hitflag = MAF
 guardflag = MA
 pausetime = 0,100
@@ -1208,10 +1209,22 @@ Fall.recovertime = ifelse(enemy,movetype = A,80,40)
 guard.cornerpush.veloff = -5
 airguard.cornerpush.veloff = -4
 
-[State 0, DestroySelf]
-type = DestroySelf
+[State 0, SprPriority]
+type = SprPriority
+trigger1 =  movehit
+value = -1
+[State 0, ChangeAnim]
+type = ChangeAnim
 trigger1 = movehit
+value = 410
+elem = 4
+;ignorehitpause = 
+persistent = 0
+
+[State 0, DestroySelf]
+type = DestroySelf 
 trigger2 = root,AnimElem = 12
+trigger1 = root,AnimElem = 3 && root,Anim = 412
 ;ignorehitpause = 
 ;persistent = 
 
@@ -1329,6 +1342,75 @@ type = MapSet
 trigger1 = var(19) != 10
 map = "Has4C"
 value = 0
+
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Glitch"
+var(19) = 1
+
+; Glitch
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Aege"
+var(19) = 2
+
+; Aege
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Fly"
+var(19) = 3
+
+; Fly
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Max"
+var(19) = 4
+
+; Max
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Noll"
+var(19) = 5
+
+; Noll
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Saito"
+var(19) = 6
+
+; Saito
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Jodie"
+var(19) = 7
+
+ ; Jodie
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Yoru"
+var(19) = 8
+
+ ; Yoru
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Violet"
+var(19) = 9
+;Bill
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Bill"
+var(19) = 10
+;Jay
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Jay"
+var(19) = 11
+
+;Clutch
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Clutch"
+var(19) = 12
 
 [State 210, 5]
 type = ChangeState
