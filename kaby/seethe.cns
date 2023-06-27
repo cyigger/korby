@@ -1330,6 +1330,12 @@ trigger1 = var(19) != 10
 map = "Has4C"
 value = 0
 
+[State 210, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
 ;--------------------------------------------
 ; enemy
 ;-------------------------------------------
