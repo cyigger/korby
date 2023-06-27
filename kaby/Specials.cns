@@ -397,6 +397,13 @@ map = "fatal"
 value = 1
 ignorehitpause = 1
 
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+ignorehitpause = 1
+
 [State 0, VelAdd]
 type = VelAdd
 trigger1 = AnimElem = 2
@@ -491,6 +498,13 @@ anim = 21105
 poweradd = 0
 sprpriority = 2
 
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+ignorehitpause = 1
+
 [State 0, VelAdd]
 type = VelAdd
 trigger1 = AnimElem = 4
@@ -541,6 +555,13 @@ anim = 21200
 poweradd = 0
 velset = 0,0
 sprpriority = -1
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+ignorehitpause = 1
 
 [State 0, I'm gonna do an unblockable attack!]
 type = Explod
@@ -636,7 +657,12 @@ poweradd = 0
 velset = 0,0
 sprpriority = -1
 
-
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+ignorehitpause = 1
 
 [State 200, 1]
 type = HitDef
@@ -760,6 +786,13 @@ anim = 21300
 poweradd = 0
 velset = 0,0
 sprpriority = 2
+
+[State 0, Busterable]
+type = MapSet
+trigger1 = 1
+map = "busterable"
+value = 1
+ignorehitpause = 1
 
 [State 0, StateTypeSet]
 type = StateTypeSet
