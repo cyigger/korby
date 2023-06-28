@@ -1330,7 +1330,7 @@ triggerall = movecontact
 trigger1 = command = "c"
 trigger1 = command = "holdback"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 4400
+value = 4405
 
 [State 300, End]
 type = ChangeState
@@ -3284,7 +3284,7 @@ triggerall = movecontact
 trigger1 = command = "c"
 trigger1 = command = "holdback"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 4400
+value = 4405
 
 [State 300, End]
 type = ChangeState
@@ -3985,7 +3985,7 @@ triggerall = movecontact
 trigger1 = command = "c"
 trigger1 = command = "holdback"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 4400
+value = 4405
 
 [State 300, End]
 type = ChangeState
@@ -4114,7 +4114,7 @@ triggerall = movecontact
 trigger1 = command = "c"
 trigger1 = command = "holdback"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 4400
+value = 4405
 
 [State 300, End]
 type = ChangeState

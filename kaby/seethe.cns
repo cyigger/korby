@@ -429,7 +429,7 @@ ctrl = 1
 ;========================
 ;Back + C Air
 ;========================
-[Statedef 4400]
+[Statedef 4405]
 type    = A
 movetype= I
 physics = A
@@ -545,7 +545,7 @@ ctrl = 1
 [State 1000, 6]
 type = ChangeState
 trigger1 = command = "holdback"
-value = 4400
+value = 4405
 ctrl = 1
 
 ;nothing found, check neutral next

@@ -1256,7 +1256,7 @@ type = VelAdd
 trigger1 = AnimElem = 8 ||  AnimElem = 9
 x = 4.5
 
-[State 0, Voice - ]
+[State 0, Voice]
 type = PlaySnd
 trigger1 = AnimElem = 1
 value = S2002,30
