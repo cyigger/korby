@@ -2664,12 +2664,12 @@ value = movehit
 
 [State -2, Counterhit Proration Scale - Helper] ;Whenever the player counterhits, give them negative proration, only works for first hit in combo
 type = Helper
-Triggerall = numhelper(1020) = 0
+Triggerall = numhelper(4020) = 0
 trigger1 = movecountered
 helpertype = normal 
 name = "Counterhit Proration Scale"
-ID = 1020
-stateno = 1020
+ID = 4020
+stateno = 4020
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0

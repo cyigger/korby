@@ -420,7 +420,7 @@ type = HitDef
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Light
 damage    = ifelse(enemy,movetype = A, 140,50)
 hitflag = MAFD
@@ -515,7 +515,7 @@ type = HitDef
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 60
 hitflag = MAFD
@@ -592,7 +592,7 @@ getpower = 0
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 30
 hitflag = MF
@@ -670,7 +670,7 @@ getpower = 0
 getpower = 0
 triggerall = !movecontact
 trigger1 = Animelem = 2
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 15
 hitflag = MAF
@@ -930,7 +930,7 @@ getpower = 0
 getpower = 0
 triggerall = time%6 = 0
 trigger1 = 1
-attr = A, HA
+attr = A, SA
 animtype  = Low
 damage    = 5
 hitflag = MAFD
@@ -1050,7 +1050,7 @@ getpower = 0
 triggerall = time <= 20
 triggerall = movecontact != 1
 trigger1 = 1
-attr = A, HA
+attr = A, SA
 animtype  = Medium
 damage    = ifelse(prevstateno = 21250,3,4)
 hitflag = MAF
@@ -1158,7 +1158,7 @@ type = HitDef
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 55
 hitflag = MAFD
@@ -1260,7 +1260,7 @@ type = HitDef
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 155
 hitflag = MAFD
@@ -1713,11 +1713,19 @@ movetype = I      ;I,A,H
 physics = A       ;A,C,S,N
 
 [State 0, VelAdd]
-type = VelAdd
+type = VelSet
 trigger1 = statetype = A
 y = -2
 ;ignorehitpause = 
 persistent = 0
+
+[State 0, VelAdd]
+type = VelSet
+triggerall = time < 15
+trigger1 = statetype = A
+y = -0
+;ignorehitpause = 
+;persistent = 0
 
 [State 0, VelSet]
 type = VelSet
