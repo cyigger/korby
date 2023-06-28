@@ -1281,13 +1281,33 @@ guardsound = 6,0
 ground.type = High
 ground.slidetime = 35
 ground.hittime  = 35 + ifelse(enemy,movetype = A || movecountered, 7,0)
+ground.velocity = 0,0
+guard.velocity = 5
+air.velocity = 0,0
+Fall = 1
+Envshake.time = 45
+fall.recovertime = 100
+fall.recover = 1
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = movehit
+triggerall = enemy,stateno != 1030
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 0
+hitflag = MAFD
+guardflag =
+pausetime = 0,0
+ground.type = High
 ground.velocity = -20,-4
 guard.velocity = 5
 air.velocity = -20,-4
 p2stateno = 1030
 p2facing = 1
 Fall = 1
-Envshake.time = 45
 fall.recovertime = 100
 fall.recover = 1
 down.bounce = 0
