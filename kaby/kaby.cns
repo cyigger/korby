@@ -644,6 +644,7 @@ value = 300
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holddown"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -653,6 +654,7 @@ ctrl = 1
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdfwd"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -661,6 +663,8 @@ value = 420
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdback"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -669,6 +673,7 @@ value = 440
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 400
@@ -835,6 +840,7 @@ value = 310
 [State 300, End]
 type = ChangeState
 ;trigger1 = command = "c" &&  movehit && command = "holddown"
+triggerall = var(19) != 0
 trigger1 = command = "c" &&  movecontact && command = "holddown"; && time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 450
@@ -843,6 +849,7 @@ ctrl = 1
 [State 300, End]
 type = ChangeState
 ;trigger1 = command = "c" &&  movehit && command = "holdfwd"
+triggerall = var(19) != 0
 trigger1 = command = "c" &&  movecontact && command = "holdfwd" ;&& time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 420
@@ -850,6 +857,7 @@ value = 420
 [State 300, End]
 type = ChangeState
 ;trigger1 = command = "c" &&  movehit && command = "holdback"
+triggerall = var(19) != 0
 trigger1 = command = "c" &&  movecontact && command = "holdback" ;&& time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 440
@@ -857,6 +865,7 @@ value = 440
 [State 300, End]
 type = ChangeState
 ;trigger1 = command = "c" &&  movehit
+triggerall = var(19) != 0
 trigger1 = command = "c" &&  movecontact; && time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 400
@@ -988,6 +997,7 @@ value = 310
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 ;trigger1 = command = "c" &&  movehit && command = "holddown"
 trigger1 = command = "c" && command = "holddown"; && time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -997,6 +1007,7 @@ ctrl = 1
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 ;trigger1 = command = "c" &&  movehit && command = "holdfwd"
 trigger1 = command = "c" && command = "holdfwd" ;&& time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1005,6 +1016,7 @@ value = 420
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 ;trigger1 = command = "c" &&  movehit && command = "holdback"
 trigger1 = command = "c" && command = "holdback" ;&& time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1151,6 +1163,7 @@ ctrl = 1
 
 [State 300, End]
 type = ChangeState
+triggerall = var(19) != 0
 ;trigger1 = command = "c" &&  movehit && command = "holdfwd"
 trigger1 = command = "c" &&  movecontact && command = "holdfwd" ;&& time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1158,6 +1171,7 @@ value = 420
 
 [State 300, End]
 type = ChangeState
+triggerall = var(19) != 0
 ;trigger1 = command = "c" &&  movehit && command = "holdback"
 trigger1 = command = "c" &&  movecontact && command = "holdback" ;&& time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1165,6 +1179,7 @@ value = 440
 
 [State 300, End]
 type = ChangeState
+triggerall = var(19) != 0
 ;trigger1 = command = "c" &&  movehit
 trigger1 = command = "c" &&  movecontact; && time <= 24
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1737,6 +1752,7 @@ value = 310
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holddown"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1746,6 +1762,7 @@ ctrl = 1
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdfwd"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1754,6 +1771,7 @@ value = 420
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdback"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1762,6 +1780,7 @@ value = 440
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 400
@@ -1945,6 +1964,7 @@ value = 320
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holddown"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1954,6 +1974,7 @@ ctrl = 1
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdfwd"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1962,6 +1983,7 @@ value = 420
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdback"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -1970,6 +1992,7 @@ value = 440
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 400
@@ -2186,6 +2209,7 @@ ctrl = 1
 type = ChangeState
 triggerall = prevstateno != 653
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdfwd"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -2195,6 +2219,7 @@ value = 420
 type = ChangeState
 triggerall = prevstateno != 653
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdback"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -2204,6 +2229,7 @@ value = 440
 type = ChangeState
 triggerall = prevstateno != 653
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 400
@@ -2938,6 +2964,7 @@ value = 50
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holddown"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -2947,6 +2974,7 @@ ctrl = 1
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdfwd"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -2955,6 +2983,7 @@ value = 420
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger1 = command = "holdfwd"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
@@ -2963,6 +2992,7 @@ value = 440
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
+triggerall = var(19) != 0
 trigger1 = command = "c"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 400

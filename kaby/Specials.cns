@@ -205,7 +205,7 @@ p2facing = 1        ;Force to face p1
 [State 200, End]
 type = Changestate
 trigger1 = time = 250
-value = 4024
+value = 20020
 
 ;------------------------------------------------------
 ; InhaleSTAR - Start
@@ -291,11 +291,11 @@ p2facing = 1        ;Force to face p1
 [State 200, End]
 type = Changestate
 trigger1 = time = 250
-value = 4024
+value = 20020
 
 ;-------------------------------------------------------------------------------
 ; C - End
-[Statedef 4024]
+[Statedef 20020]
 type    = S
 movetype= A
 physics = S
@@ -1192,7 +1192,7 @@ ctrl = 0
 anim = 22000
 poweradd = -1500
 velset = 0,0
-sprpriority = 5
+sprpriority = 3
 
 [State 0, Busterable]
 type = MapSet
@@ -1200,6 +1200,13 @@ trigger1 = 1
 map = "busterable"
 value = 1
 ignorehitpause = 1
+
+[State 0, enableDHC] ; Enables DHC and disables tag
+type = MapSet
+triggerall = teammode = tag
+trigger1 = movehit
+map = "enableDHC"
+value = 1
 
 [State 0, I'm gonna do an unblockable attack!]
 type = Explod
@@ -1264,7 +1271,7 @@ attr = S, SA
 animtype  = Heavy
 damage    = 155
 hitflag = MAFD
-guardflag = 
+guardflag =
 pausetime = 30,45
 sparkno = 2
 guard.sparkno = 13000
@@ -1278,6 +1285,7 @@ ground.velocity = -20,-4
 guard.velocity = 5
 air.velocity = -20,-4
 p2stateno = 1030
+p2facing = 1
 Fall = 1
 Envshake.time = 45
 fall.recovertime = 100
