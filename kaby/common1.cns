@@ -357,7 +357,7 @@ sysvar(1) = -1
 type = VelSet
 trigger1 = AnimTime = 0
 x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
-y = const(velocity.jump.y)
+y = const(velocity.jump.y) * ifelse(command = "holdup", 1, 0.75)
 
 [State 40, 5]
 type = VelSet
@@ -664,6 +664,14 @@ physics = A
 type = VarSet
 trigger1 = Time = 0
 sysvar(1) = 0
+
+[State 50, Shorthop buffer]
+type = VelSet
+triggerall = prevstateno = 40
+triggerall = time < 3
+trigger1 = command != "holdup"
+trigger1 = vel y < const(velocity.jump.y) * 0.75
+y = const(velocity.jump.y) * 0.75 + 0.44 * time
 
 [State 50, 2]
 type = ChangeAnim

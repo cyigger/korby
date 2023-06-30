@@ -688,11 +688,11 @@ type = VelAdd
 trigger1 = prevstateno = 30 && time = 0
 x = 3
 
-[State 1000, 6]
-type = ChangeState
-trigger1 = time = 2
-value = 6954
-ctrl = 1
+;[State 1000, 6]
+;type = ChangeState
+;trigger1 = time = 2
+;value = 6954
+;ctrl = 1
 
 [State 1000, 6]
 type = ChangeState
@@ -799,6 +799,12 @@ trigger1 = var(19) = 12
 value = 692
 ctrl = 1
 
+[State 1000, End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
 ;========================
 ;Wavedash + C
 ;========================
@@ -892,6 +898,7 @@ ctrl = 1
 [State 1000, 6]
 type = ChangeState
 trigger1 = var(19) = 8
+triggerall = numhelper(80081) = 0
 Triggerall = power >= 200
 value = 80080
 ctrl = 1
@@ -925,7 +932,8 @@ ctrl = 1
 type = ChangeState
 trigger1 = var(19) = 12
 Triggerall = Var(17) < 3 
-value = ifelse(numhelper(6823) = 0, 80120, 10)
+triggerall = numhelper(6823) = 0
+value = 80120
 ctrl = 1
 
 ;---------------------------------------------------------------------------
@@ -18380,7 +18388,7 @@ triggerall = numhelper(496) = 0
 trigger1 = AnimElem = 2
 name = "Wavedash C Granade"
 ID = 496
-stateno = 80031
+stateno = 80041
 pos = 25,-10
 postype = p1
 facing = 1
@@ -18686,8 +18694,8 @@ ID = 80051
 stateno = 80051
 pos = 35,-20
 postype = p1
-size.xscale = map(AbilityMultiplier)
-size.yscale = map(AbilityMultiplier)
+size.xscale = 1.2
+size.yscale = 1.2
 facing = -1
 sprpriority = 5
 inheritJuggle = 1
@@ -21196,6 +21204,14 @@ type = VarSet
 trigger1 = 1
 fv = 1   ;fv = 10
 value = 10
+
+[State -3, Phantom Blade Direction Held Variable Killer]
+type = MapSet
+triggerall = map(pbladedirectionHeld) > 0
+trigger1 = movetype = H && stateno != [120,160]
+map = "pbladedirectionHeld"
+value = 0
+ignorehitpause = 1
 
 [State 214, y]
 type = removeexplod

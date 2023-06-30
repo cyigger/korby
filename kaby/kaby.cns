@@ -3478,9 +3478,9 @@ air.cornerpush.veloff = 0
 
 [State 300, End]
 type = ChangeState
+triggerall = movecontact
 trigger1 = command = "c"
 trigger1 = command = "holddown"
-trigger1 = movecontact
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 460
 ctrl = 1
@@ -3489,33 +3489,24 @@ ctrl = 1
 type = ChangeState
 triggerall = movecontact
 trigger1 = command = "c"
-trigger1 = command = "holddown"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 450
-ctrl = 1
-
-[State 300, End]
-type = ChangeState
-triggerall = movecontact
-trigger1 = command = "c"
 trigger1 = command = "holdfwd"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 420
+value = 430
 
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
 trigger1 = command = "c"
-trigger1 = command = "holdfwd"
+trigger1 = command = "holdback"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 440
+value = 4405
 
 [State 300, End]
 type = ChangeState
 triggerall = movecontact
 trigger1 = command = "c"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 400
+value = 620
 
 [State 200, SPECIAL 3 - CUTTER]
 type = ChangeState
@@ -4548,10 +4539,23 @@ type = VarSet
 triggerall = movetype = H 
 trigger1 = enemy,map(fatal) = 1 ; got fatal? LOSE ABILITY
 trigger1 = enemy,movecountered
-trigger1 = stateno != 20010
+trigger1 = stateno != 20010 && stateno != [800, 840] ; don't count getting fataled during counter
 trigger2 = gethitvar(damage) >= 75 ; took over 74 damage? LOSE ABILITY
 trigger2 = map(hitOverride) = 0
 v = 19    ;fv = 10
+value = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 0, VarSet]
+type = VarSet
+triggerall = movetype = H 
+trigger1 = enemy,map(fatal) = 1 ; got fatal? LOSE ABILITY
+trigger1 = enemy,movecountered
+trigger1 = stateno != 20010 && stateno != [800, 840] ; don't count getting fataled during counter
+trigger2 = gethitvar(damage) >= 75 ; took over 74 damage? LOSE ABILITY
+trigger2 = map(hitOverride) = 0
+v = 10    ;fv = 10
 value = 0
 persistent = 0
 ignorehitpause = 1
@@ -5035,7 +5039,7 @@ value = palno
 
 [State 0, VarSet]
 type = VarSet
-trigger1 = var(52) > 14
+trigger1 = var(52) > 7
 v = 52    ;fv = 10
 value = 1
 
@@ -5043,7 +5047,7 @@ value = 1
 type = VarSet
 trigger1 = var(52) < 1
 v = 52    ;fv = 10
-value = 14
+value = 7
 ;-------------------------------------------------------------------
 
 [State 0, StopSnd]
