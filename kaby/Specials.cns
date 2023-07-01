@@ -205,7 +205,7 @@ p2facing = 1        ;Force to face p1
 [State 200, End]
 type = Changestate
 trigger1 = time = 250
-value = 4024
+value = 20020
 
 ;------------------------------------------------------
 ; InhaleSTAR - Start
@@ -291,11 +291,11 @@ p2facing = 1        ;Force to face p1
 [State 200, End]
 type = Changestate
 trigger1 = time = 250
-value = 4024
+value = 20020
 
 ;-------------------------------------------------------------------------------
 ; C - End
-[Statedef 4024]
+[Statedef 20020]
 type    = S
 movetype= A
 physics = S
@@ -420,7 +420,7 @@ type = HitDef
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Light
 damage    = ifelse(enemy,movetype = A, 140,50)
 hitflag = MAFD
@@ -515,7 +515,7 @@ type = HitDef
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 60
 hitflag = MAFD
@@ -592,7 +592,7 @@ getpower = 0
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 30
 hitflag = MF
@@ -670,7 +670,7 @@ getpower = 0
 getpower = 0
 triggerall = !movecontact
 trigger1 = Animelem = 2
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 15
 hitflag = MAF
@@ -930,7 +930,7 @@ getpower = 0
 getpower = 0
 triggerall = time%6 = 0
 trigger1 = 1
-attr = A, HA
+attr = A, SA
 animtype  = Low
 damage    = 5
 hitflag = MAFD
@@ -1050,7 +1050,7 @@ getpower = 0
 triggerall = time <= 20
 triggerall = movecontact != 1
 trigger1 = 1
-attr = A, HA
+attr = A, SA
 animtype  = Medium
 damage    = ifelse(prevstateno = 21250,3,4)
 hitflag = MAF
@@ -1158,7 +1158,7 @@ type = HitDef
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 55
 hitflag = MAFD
@@ -1192,7 +1192,7 @@ ctrl = 0
 anim = 22000
 poweradd = -1500
 velset = 0,0
-sprpriority = 5
+sprpriority = 3
 
 [State 0, Busterable]
 type = MapSet
@@ -1200,6 +1200,13 @@ trigger1 = 1
 map = "busterable"
 value = 1
 ignorehitpause = 1
+
+[State 0, enableDHC] ; Enables DHC and disables tag
+type = MapSet
+triggerall = teammode = tag
+trigger1 = movehit
+map = "enableDHC"
+value = 1
 
 [State 0, I'm gonna do an unblockable attack!]
 type = Explod
@@ -1249,7 +1256,7 @@ type = VelAdd
 trigger1 = AnimElem = 8 ||  AnimElem = 9
 x = 4.5
 
-[State 0, Voice - ]
+[State 0, Voice]
 type = PlaySnd
 trigger1 = AnimElem = 1
 value = S2002,30
@@ -1260,11 +1267,11 @@ type = HitDef
 getpower = 0
 triggerall = !movecontact
 trigger1 = 1
-attr = S, HA
+attr = S, SA
 animtype  = Heavy
 damage    = 155
 hitflag = MAFD
-guardflag = 
+guardflag =
 pausetime = 30,45
 sparkno = 2
 guard.sparkno = 13000
@@ -1274,12 +1281,33 @@ guardsound = 6,0
 ground.type = High
 ground.slidetime = 35
 ground.hittime  = 35 + ifelse(enemy,movetype = A || movecountered, 7,0)
+ground.velocity = 0,0
+guard.velocity = 5
+air.velocity = 0,0
+Fall = 1
+Envshake.time = 45
+fall.recovertime = 100
+fall.recover = 1
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = movehit
+triggerall = enemy,stateno != 1030
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 0
+hitflag = MAFD
+guardflag =
+pausetime = 0,0
+ground.type = High
 ground.velocity = -20,-4
 guard.velocity = 5
 air.velocity = -20,-4
 p2stateno = 1030
+p2facing = 1
 Fall = 1
-Envshake.time = 45
 fall.recovertime = 100
 fall.recover = 1
 down.bounce = 0
@@ -1713,11 +1741,19 @@ movetype = I      ;I,A,H
 physics = A       ;A,C,S,N
 
 [State 0, VelAdd]
-type = VelAdd
+type = VelSet
 trigger1 = statetype = A
 y = -2
 ;ignorehitpause = 
 persistent = 0
+
+[State 0, VelAdd]
+type = VelSet
+triggerall = time < 15
+trigger1 = statetype = A
+y = -0
+;ignorehitpause = 
+;persistent = 0
 
 [State 0, VelSet]
 type = VelSet
