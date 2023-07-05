@@ -158,6 +158,7 @@ victory10 = "Knowing that you cannot win, you still persist... How truly foolish
 victory11 = "mutt"
 victory12 = "Rejoice, you have reached the height of beauty at my hand."
 victory13 = "Burakku."
+victory14 = "ooh xd"
 ;---------------------------------------------------------------------------
 ; Lose by Time Over
 ; CNS difficulty: basic
@@ -971,7 +972,7 @@ value = 21000
 
 [State 200, End]
 type = ChangeState
-triggerall = prevstateno =! 950
+triggerall = prevstateno != 950
 triggerall = movecontact
 ; = command = "a" &&  movehit && command = "holddown"
 trigger1 = command = "a" && command = "holddown" ;&& time <= 24
@@ -5039,7 +5040,7 @@ value = palno
 
 [State 0, VarSet]
 type = VarSet
-trigger1 = var(52) > 7
+trigger1 = var(52) > 14
 v = 52    ;fv = 10
 value = 1
 
@@ -5047,7 +5048,7 @@ value = 1
 type = VarSet
 trigger1 = var(52) < 1
 v = 52    ;fv = 10
-value = 7
+value = 14
 ;-------------------------------------------------------------------
 
 [State 0, StopSnd]

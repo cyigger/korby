@@ -52,7 +52,7 @@ value = 1
 type = ChangeAnim
 trigger1 = Anim != 0 && Anim != 5 && Anim != 2 && Anim != 1 && Anim != 2000
 trigger2 = Anim = 5 && AnimTime = 0 ;Turn anim over
-trigger1 = var(19) = 0 && var(10) = 0 || var(19) = 7 && var(10) = 0 || var(19) = 1 || var(19) = 4 || var(19) = 5 || var(19) = 8 || var(19) = 9 || var(19) = 10 || var(19) = 12
+trigger1 = var(19) = 0 && var(10) = 0 || var(19) = 7 && var(10) = 0 || var(19) = 1 || var(19) = 4 || var(19) = 5 || var(19) = 8 || var(19) = 9 || var(19) = 10 || var(19) = 12 || var(19) = 13
 value = 2
 
 [State 0, 1]
