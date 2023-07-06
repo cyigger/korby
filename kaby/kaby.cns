@@ -4142,6 +4142,7 @@ sprpriority = 2
 type = BindToParent
 trigger1 = 1
 
+
 [State 0, SuperPause]
 type = SuperPause
 trigger1 = Time = 1
@@ -4239,6 +4240,14 @@ velset = 0,0
 movetype = A
 physics = N
 sprpriority = 2
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = S666,0
+volume = 100
+channel = -1
 
 [State 0, SuperPause]
 type = SuperPause
@@ -5104,15 +5113,6 @@ value = 0
 type = RemoveExplod
 trigger1 = P2Life = 0
 id = 451
-;------------------------------
-; 5C Damage Grow Variable
-
-[State -3, VarSet]
-type = VarSet
-trigger1 = 1
-v = 40
-value = life ** 0 * (1 + life / 100) 
-
 ; ------ Damage scaling -------
 [State -2, Attack Scale]
 type = AttackMulSet
