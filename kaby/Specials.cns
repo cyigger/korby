@@ -202,6 +202,38 @@ Envshake.time = 20
 p2stateno = 1025   ;Make p2 go to state 1025 on hit
 p2facing = 1        ;Force to face p1
 
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = !movecontact
+triggerall = enemy,map(hitOverride) = 1
+triggerall = root,map(juggle) < 100
+trigger1 = 1
+attr = S, NP
+animtype  = Heavy 
+damage    = 100
+Hitflag = MAFD
+guardflag = MA
+pausetime = 0,25
+guard.pausetime = 0,15
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-35
+hitsound   = 5,4
+guardsound = 6,11
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 15,5
+guard.hittime  = 21
+guard.slidetime = 25
+guard.velocity = -5
+air.velocity = 15,5
+airguard.velocity = -5,-2
+Fall = 1
+Envshake.time = 20
+p2facing = 1        ;Force to face p1
+
 [State 200, End]
 type = Changestate
 trigger1 = time = 250
@@ -286,6 +318,38 @@ airguard.velocity = -5,-2
 Fall = 1
 Envshake.time = 20
 p2stateno = 1025   ;Make p2 go to state 1025 on hit
+p2facing = 1        ;Force to face p1
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = !movecontact
+triggerall = enemy,map(hitOverride) = 1
+triggerall = root,map(juggle) < 100
+trigger1 = 1
+attr = S, NP
+animtype  = Heavy 
+damage    = root,map(damagesave)
+Hitflag = MAFD
+guardflag = MA
+pausetime = 0,25
+guard.pausetime = 0,15
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-35
+hitsound   = 5,4
+guardsound = 6,11
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = 15,5
+guard.hittime  = 21
+guard.slidetime = 25
+guard.velocity = -5
+air.velocity = 15,5
+airguard.velocity = -5,-2
+Fall = 1
+Envshake.time = 20
 p2facing = 1        ;Force to face p1
 
 [State 200, End]
@@ -419,6 +483,7 @@ x = 2
 type = HitDef
 getpower = 0
 triggerall = !movecontact
+triggerall = enemy,map(hitOverride) = 0
 trigger1 = 1
 attr = S, SA
 animtype  = Light
@@ -440,6 +505,34 @@ air.velocity = -1,-4
 Fall = 1
 p2stateno  = ifelse(enemy,movetype = A, 1025,5020)
 p2facing = 1
+fall.recover =  0
+Envshake.time = 10
+p2getp1state = 0
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = !movecontact
+triggerall = enemy,map(hitOverride) = 1
+trigger1 = 1
+attr = S, SA
+animtype  = Light
+damage    = ifelse(enemy,movetype = A, 140,50)
+hitflag = MAFD
+guardflag = MAF
+pausetime = 15,25
+sparkno =15000
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = S0,1
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 25
+ground.velocity = -1,-4
+guard.velocity = 5
+air.velocity = -1,-4
+Fall = 1
 fall.recover =  0
 Envshake.time = 10
 p2getp1state = 0
@@ -1266,6 +1359,7 @@ volumescale = 100
 type = HitDef
 getpower = 0
 triggerall = !movecontact
+triggerall = enemy,map(hitOverride) = 0
 trigger1 = 1
 attr = S, SA
 animtype  = Heavy
@@ -1281,33 +1375,42 @@ guardsound = 6,0
 ground.type = High
 ground.slidetime = 35
 ground.hittime  = 35 + ifelse(enemy,movetype = A || movecountered, 7,0)
-ground.velocity = 0,0
-guard.velocity = 5
-air.velocity = 0,0
-Fall = 1
-Envshake.time = 45
-fall.recovertime = 100
-fall.recover = 1
-
-[State 200, 1]
-type = HitDef
-getpower = 0
-triggerall = movehit
-triggerall = enemy,stateno != 1030
-trigger1 = 1
-attr = S, SA
-animtype  = Heavy
-damage    = 0
-hitflag = MAFD
-guardflag =
-pausetime = 0,0
-ground.type = High
 ground.velocity = -20,-4
 guard.velocity = 5
 air.velocity = -20,-4
 p2stateno = 1030
 p2facing = 1
 Fall = 1
+Envshake.time = 45
+fall.recovertime = 100
+fall.recover = 1
+down.bounce = 0
+
+[State 200, 1]
+type = HitDef
+getpower = 0
+triggerall = !movecontact
+triggerall = enemy,map(hitOverride) = 1
+trigger1 = 1
+attr = S, SA
+animtype  = Heavy
+damage    = 155
+hitflag = MAFD
+guardflag =
+pausetime = 30,45
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = 5,4
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 35
+ground.hittime  = 35 + ifelse(enemy,movetype = A || movecountered, 7,0)
+ground.velocity = -20,-4
+guard.velocity = 5
+air.velocity = -20,-4
+Fall = 1
+Envshake.time = 45
 fall.recovertime = 100
 fall.recover = 1
 down.bounce = 0

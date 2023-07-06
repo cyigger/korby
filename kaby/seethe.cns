@@ -12292,7 +12292,7 @@ Triggerall = var(47) > 0
 triggerall = numhelper(3500) = 0
 trigger1 = command = "c"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 535
+value = 538
 
 [State 200, End]
 type = ChangeState
@@ -18739,13 +18739,13 @@ inheritJuggle = 1
 
 [State 0, Varadd]
 type = Varadd
-trigger1 = AnimElem = 7
+trigger1 = AnimElem = 5
 v = 7  ;fv = 
 value = 1
 
 [State 0, VarSet]
-type = VarSet  ; its fr just ignoring this
-trigger1 = AnimElem = 7
+type = VarSet  ; its fr just ignoring this ; you had to adjust the AnimElem because you are using your own animation.
+trigger1 = AnimElem = 5
 v = 8  ;fv = 
 value = 0
 
@@ -19711,7 +19711,7 @@ trigger1 = animtime = 0
 trigger2 = root, movetype = H
 
 ;-------------------------------------------------------------------------------
-; C - Aire
+; Sareo C - Aire
 [Statedef 730]
 type  = A
 movetype= A
