@@ -187,6 +187,12 @@ var(19) = 12
 type = VarSet
 trigger1 = enemy,name = "Sareo"
 var(19) = 13
+
+;Stray
+[State 2121,]
+type = VarSet
+trigger1 = enemy,name = "Stray"
+var(19) = 0 ;14
 ;---------------------------------------------------------------------------
 
 [State 200, Neutral Reset]
