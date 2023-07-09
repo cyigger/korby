@@ -18639,7 +18639,7 @@ volumescale = 500
 
 [State 0, SHOCKA Cast fx]
 type = Explod
-trigger1 = AnimElem = 2
+trigger1 = time = 5
 anim = 723
 ID = 723
 pos = 0,0
@@ -18661,7 +18661,7 @@ removeongethit = 1
 
 [State 0, SHOCKA!]
 type = Helper
-trigger1 = AnimElem = 6
+trigger1 = time = 25
 trigger1 = var(8) = 0
 helpertype = normal ;player
 name = "SHOCKA"
@@ -18680,7 +18680,7 @@ inheritJuggle = 1
 
 [State 0, SHOCKA!]
 type = Helper
-trigger1 = AnimElem = 5
+trigger1 = time = 20
 trigger1 = var(8) = 3
 helpertype = normal ;player
 name = "SHOCKA SPECIAL"
@@ -18699,7 +18699,7 @@ inheritJuggle = 1
 
 [State 0, SHOCKA!]
 type = Helper
-trigger1 = AnimElem = 6
+trigger1 = time = 25
 trigger1 = var(8) = 3
 helpertype = normal ;player
 name = "SHOCKA SPECIAL"
@@ -18718,7 +18718,7 @@ inheritJuggle = 1
 
 [State 0, SHOCKA!]
 type = Helper
-trigger1 = AnimElem = 7
+trigger1 = time = 30
 trigger1 = var(8) = 3
 helpertype = normal ;player
 name = "SHOCKA SPECIAL"
@@ -18739,13 +18739,13 @@ inheritJuggle = 1
 
 [State 0, Varadd]
 type = Varadd
-trigger1 = AnimElem = 5
+trigger1 = time = 30
 v = 7  ;fv = 
 value = 1
 
 [State 0, VarSet]
-type = VarSet  ; its fr just ignoring this ; you had to adjust the AnimElem because you are using your own animation.
-trigger1 = AnimElem = 5
+type = VarSet  ; its fr just ignoring this ; scratch that, your animation is different, so it's best to try to match the times of the original animation manually
+trigger1 = time = 30
 v = 8  ;fv = 
 value = 0
 
