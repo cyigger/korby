@@ -1462,7 +1462,7 @@ color = 0
 
 [State 814,]
 type = PlayerPush
-trigger1 = 1
+trigger1 = Time < 164
 value = 0
 
 [State 0, ScreenBound]
@@ -2070,7 +2070,7 @@ ground.slidetime = 25
 ground.velocity = 2,-6
 air.velocity = 1.5,-6
 fall.recover = 0
-guard.pausetime = 0,5
+guard.pausetime = 0,ifelse(time>=50,20,10)
 guard.hittime = 5
 airguard.velocity = 2,-7
 fall = 1
@@ -2157,7 +2157,7 @@ value = 1
 
 [State 0, VarSet]
 type = MapSet
-trigger1 = var(19) = 10 && var(19) = 13
+trigger1 = var(19) = 10 || var(19) = 13 ;; wooaaaahh
 map = "Has4C"
 value = 1
 

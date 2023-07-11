@@ -404,7 +404,7 @@ type = Dialogue
 triggerall = enemy,name = "Pichu" || enemy,name = "Aumu" || enemy,name = "Ari" || enemy,name = "Sareo"
 trigger1 = 1
 hidebars = 1
-text1 = "<p1>	I will make sure to destroy you!<wait=30>"
+text1 = "<p1>	kill yourself!<wait=30>"
 
 [State 191, Dialogue]
 type = Dialogue
@@ -1284,16 +1284,16 @@ fall.yvelocity = -9
 Fall = 1
 fall.recover = 0
 
+;[State 0, VelAdd]
+;type = VelAdd
+;trigger1 = time = 1 && prevstateno != 320
+;x = 3
+;y = -7
 [State 0, VelAdd]
 type = VelAdd
-trigger1 = time = 1 && prevstateno != 310
-x = 3
-y = -7
-[State 0, VelAdd]
-type = VelAdd
-trigger1 = time = 1 && prevstateno = 310
+trigger1 = time = 1
 x = 4
-y = -7.5
+y = ifelse(enemy,pos y < pos y,-7.5,-5.5)
 
 [State 0, Turn]
 type = Turn
@@ -1810,13 +1810,13 @@ sprpriority = 2
 [State 0, Turn]
 type = Turn
 triggerall = p2dist x < 0
-trigger1 = prevstateno = 210
+trigger1 = prevstateno = [210,212]
 persistent = 0
 
 [State 0, VelSet]
 type = VelSet
 trigger1 = AnimElem = 2
-x = ifelse(prevstateno=210,12,6)
+x = ifelse(prevstateno=[210,212],12,6)
 y = 0
 
 [State 0, PlaySnd]
@@ -4142,7 +4142,6 @@ sprpriority = 2
 type = BindToParent
 trigger1 = 1
 
-
 [State 0, SuperPause]
 type = SuperPause
 trigger1 = Time = 1
@@ -4240,14 +4239,6 @@ velset = 0,0
 movetype = A
 physics = N
 sprpriority = 2
-
-
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = Time = 0
-value = S666,0
-volume = 100
-channel = -1
 
 [State 0, SuperPause]
 type = SuperPause
@@ -5113,6 +5104,15 @@ value = 0
 type = RemoveExplod
 trigger1 = P2Life = 0
 id = 451
+;------------------------------
+; 5C Damage Grow Variable
+
+[State -3, VarSet]
+type = VarSet
+trigger1 = 1
+v = 40
+value = life ** 0 * (1 + life / 100) 
+
 ; ------ Damage scaling -------
 [State -2, Attack Scale]
 type = AttackMulSet
