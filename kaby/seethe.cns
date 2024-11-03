@@ -64,7 +64,7 @@ sprpriority = 2
 type = PlaySnd
 triggerall = time = 0
 trigger1 = AnimElem = 1
-value = S200,19+(random<500)*1
+value = Sifelse(map(VoiceSwitch)=0,200,205),19+(random<500)*1
 volumescale = 150
 channel = 0
 
@@ -515,10 +515,7 @@ ctrl = 1
 [State 1000, 6]
 type = ChangeState
 trigger1 = var(19) = 5
-triggerall = power >= 250
-triggerall = numhelper(80056) = 0
-triggerall = numhelper(80057) = 0
-value = 80055
+value = 505
 ctrl = 1
 ;Saito
 [State 1000, 6]
@@ -1011,7 +1008,7 @@ id = 143
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 =  AnimElem = 2
-value = S200,21
+value = Sifelse(map(VoiceSwitch)=0,200,205),21
 volumescale = 80
 channel = 1
 
@@ -1088,7 +1085,7 @@ stateno = 20010
 [State 210, 2]
 type = HitDef
 triggerall = !movecontact
-triggerall = ((enemy,prevstateno = 40 || enemy,prevstateno = 60 || enemy,stateno = 105) && enemy,time >= 5)
+triggerall = time >= 32
 trigger1 = enemy,anim != 40
 attr = S, NT
 animtype  = Hard
@@ -1116,7 +1113,7 @@ p2facing = 1
 [State 210, 2]
 type = HitDef
 triggerall = !movecontact
-triggerall = !((enemy,prevstateno = 40 || enemy,prevstateno = 60 || enemy,stateno = 105) && enemy,time >= 5)
+triggerall = time <= 32
 trigger1 = enemy,anim != 40
 attr = S, NT
 animtype  = Hard
@@ -1183,7 +1180,7 @@ id = 143
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 =  AnimElem = 2
-value = S200,21
+value = Sifelse(map(VoiceSwitch)=0,200,205),21
 volumescale = 80
 channel = 1
 
@@ -1459,13 +1456,28 @@ velset = 0,0
 anim = 408
 sprpriority = 2
 
+[State 0, Juggle Map]
+type = MapAdd
+trigger1 = movehit
+map = "juggle"
+value = 25
+persistent = 0
+
+[State 0, Damage Proration]
+type = VarAdd
+trigger1 = movehit
+v = 11
+ignorehitpause = 1
+persistent = 0
+value = 25
+
 [State 200, 1]
 type = HitDef
 triggerall = !movecontact
 trigger1 = 1
 attr = A, HA
 animtype  = Light
-damage    = 110
+damage    = 85
 hitflag = MAFD
 guardflag = MA
 pausetime = 0,0
@@ -1485,6 +1497,15 @@ p2stateno = 1025
 p2facing = 1
 fall.recover =  0
 Envshake.time = 10
+
+[State 200, SPECIAL 6 - ROULETTE]
+type = ChangeState
+Triggerall = movecontact
+triggerall = time >= 38
+triggerall = numhelper(3500) = 0
+Triggerall = power >= 1000
+trigger1 = command = "SPECIAL 6"
+value = 1500
 
 [State 200,p]
 type = ChangeState
@@ -1585,12 +1606,13 @@ anim = 470
 poweradd = -200
 velset = -2.5,0
 sprpriority = 1
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = AnimElem = 1
-value = S200,8+(random<500)*1
-volumescale = 100
-channel = 0
+
+;[State 0, PlaySnd]
+;type = PlaySnd
+;trigger1 = AnimElem = 1
+;value = S200,8+(random<500)*1
+;volumescale = 100
+;channel = 0
 
 [State 0, FatalCounter]
 type = MapSet
@@ -2625,19 +2647,20 @@ anim = 473
 poweradd = 0
 sprpriority = 2
 
-[State 0, VOICE - Heheh]
-type = PlaySnd
-triggerall = var(2)  >=40
-triggerall = var(2)  <=70
-trigger1 = Time = 5
-value = S420,0
-volumescale = 500
+;[State 0, VOICE - Heheh]
+;type = PlaySnd
+;triggerall = var(2)  >=40
+;triggerall = var(2)  <=70
+;trigger1 = Time = 5
+;value = S420,0
+;volumescale = 500
+
 [State 0, VOICE - Grunt 2]
 type = PlaySnd
 triggerall = var(2)  >=75
 triggerall = var(2)  <=100
 trigger1 = Time = 0
-value = S200,1
+value = Sifelse(map(VoiceSwitch)=0,200,205),1
 volumescale = 500
 
 [State 0, VelSet]
@@ -2942,7 +2965,7 @@ value = 0
 [State 0, Turn]
 type = Turn
 triggerall = p2dist x < 0
-trigger1 = prevstateno = 320 && time = 0
+trigger1 = prevstateno = 310 && time = 0
 
 [State 0, VelSet]
 type = VelSet
@@ -3088,7 +3111,7 @@ value = 3
 [State 0, VOICE - Grunt 3]
 type = PlaySnd
 trigger1 = Time = 5
-value = S200,3
+value = Sifelse(map(VoiceSwitch)=0,200,205),3
 volumescale = 500
 
 [State 0, Turn]
@@ -4449,7 +4472,7 @@ type = ChangeState
 triggerall = time > 5
 trigger1 = command = "y"
 trigger2 = command = "c"
-value = 320
+value = 310
 
 [State 200, End]	
 type = ChangeState
@@ -8665,7 +8688,7 @@ value = 125
 [State 0, Voice - shred this!!!]
 type = PlaySnd
 trigger1 = AnimElem = 1
-value = S200,16
+value = Sifelse(map(VoiceSwitch)=0,200,205),16
 volumescale = 200
 
 
@@ -9277,7 +9300,7 @@ type = PlaySnd
 triggerall = var(2)  >=0
 triggerall = var(2)  <=35
 trigger1 = AnimElem = 1
-value = S200,16
+value = Sifelse(map(VoiceSwitch)=0,200,205),0
 volumescale = 200
 
 
@@ -9574,7 +9597,7 @@ volumescale = 200
 [State 0, Voice - Grunt 5!]
 type = PlaySnd
 trigger1 = AnimElem = 1
-value = S200,9
+value = Sifelse(map(VoiceSwitch)=0,200,205),9
 volumescale = 200
 
 
@@ -9827,7 +9850,7 @@ volumescale = 200
 [State 0, Voice - Grunt 5!]
 type = PlaySnd
 trigger1 = AnimElem = 1
-value = S200,9
+value = Sifelse(map(VoiceSwitch)=0,200,205),9
 volumescale = 200
 
 
@@ -13107,7 +13130,7 @@ sprpriority = 2
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = time = 0
-value = S200,1
+value = Sifelse(map(VoiceSwitch)=0,200,205),1
 volumescale = 50
 
 [State 475, ParentVarAdd] ; If the enemy touches the sticky mine, adds +1 to bomb count and vanishes
@@ -13118,12 +13141,12 @@ trigger1 = abs(pos Y - enemynear,pos Y) <= 20
 v = 21
 value = 1
 
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = abs(pos X - enemynear,pos X) <= 30 
-trigger1 = abs(pos Y - enemynear,pos Y) <= 20 
-value = S200,0
-volumescale = 50
+;[State 0, PlaySnd]
+;type = PlaySnd
+;trigger1 = abs(pos X - enemynear,pos X) <= 30 
+;trigger1 = abs(pos Y - enemynear,pos Y) <= 20 
+;value = S200,0
+;volumescale = 50
 
 [State 475, 2c trigger] ; If bill uses 2c or j.2c, explodes
 type = ChangeState
@@ -15637,7 +15660,7 @@ channel = 0
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = AnimElem = 1
-value = S200,2
+value = Sifelse(map(VoiceSwitch)=0,200,205),2
 volumescale = 100
 
 
@@ -16892,7 +16915,7 @@ channel = 0
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = AnimElem = 1
-value = S200,2
+value = Sifelse(map(VoiceSwitch)=0,200,205),2
 volumescale = 100
 
 [State 0, PlaySnd]
@@ -17967,12 +17990,12 @@ triggerall = helper(712),movehit
 trigger1 = command = "FF"
 value = 100
 ctrl = 1
-
-[State 310, End]
-type = ChangeState
-triggerall = helper(712),movehit
-trigger1 = command = "WD"
-value = 30
+;
+;[State 310, End]
+;type = ChangeState
+;triggerall = helper(712),movehit
+;trigger1 = command = "WD"
+;value = 30
 
 [State 310, End]
 type = ChangeState
@@ -20903,34 +20926,6 @@ Envshake.time = 30
 guard.cornerpush.veloff = -32
 airguard.cornerpush.veloff = -32
 
-[State 200, Special 01 - Step back]
-type = ChangeState
-Triggerall = movecontact
-triggerall = numhelper(3500) = 0
-Triggerall = power >=1000
-trigger1 = command = "SPECIAL 1"
-value = 23000
-[State 200, Special 02 - COUNTER 01]
-type = ChangeState
-Triggerall = movecontact
-triggerall = numhelper(3500) = 0
-Triggerall = power >= 1000
-trigger1 = command = "SPECIAL 2"
-value = 22000
-[State 200, Special 03 - OKI BALL]
-type = ChangeState
-Triggerall = movecontact
-triggerall = numhelper(3500) = 0
-Triggerall = power >= 1000
-trigger1 = command = "SPECIAL 3"
-value = 21000
-[State 200, SPECIAL 4 - Sideswap kick]
-type = ChangeState
-Triggerall = movecontact
-triggerall = numhelper(3500) = 0
-Triggerall = power >= 500
-trigger1 = command = "SPECIAL 4"
-value = 24000
 
 [State 200, 2C]
 type = ChangeState
@@ -23334,13 +23329,13 @@ trigger1 = command = "holdfwd"
 trigger1 = command = "c"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 540
-
-[State 200, Wavedash]
-type = ChangeState
-triggerall = movehit
-trigger1 = command = "WD"
-value = 30
-ctrl = 0
+;
+;[State 200, Wavedash]
+;type = ChangeState
+;triggerall = movehit
+;trigger1 = command = "WD"
+;value = 30
+;ctrl = 0
 
 [State 200, End]
 type = ChangeState
@@ -23763,13 +23758,31 @@ pausemovetime = 99999999999999999999999
 [State 9165, Bar]
 type = Explod
 triggerall = TeamSide = 1
-trigger1 = NumExplod(9200) = 0 
+trigger1 = NumHelper(45001) = 0
 anim = 9200
 ID = 9200
 scale = 0.25,0.25
 postype = left
 pos = 34,128
 sprpriority = -2
+removetime = 1
+bindtime = -1
+pausemovetime = 0
+supermovetime = 0
+ignorehitpause = 1
+ownpal = 1
+
+[State 9165, Bar]
+type = Explod
+triggerall = TeamSide = 1
+trigger1 = NumHelper(45001) > 0
+anim = 9205
+ID = 9205
+scale = 0.25,0.25
+postype = left
+pos = 34,128
+sprpriority = -2
+removetime = 1
 bindtime = -1
 pausemovetime = 0
 supermovetime = 0
@@ -23848,10 +23861,27 @@ ownpal = 1
 type = Explod
 triggerall = TeamSide = 2
 trigger1 = var(19) = 11 && map(heat) < 100
+anim = 20020
+ID = 20020
+scale = .45,.45
+postype = right
+pos = -80,150
+sprpriority = -1.5
+bindtime = -1
+removetime = 1
+pausemovetime = 99999999999999999999999
+supermovetime = 99999999999999999999999
+ignorehitpause = 1
+ownpal = 1
+
+[State 9165, for charge based abilities]
+type = Explod
+triggerall = TeamSide = 2
+trigger1 = var(19) = 11 && map(heat) < 200 && map(heat) > 100
 anim = 20021
 ID = 20021
 scale = .45,.45
-postype = left
+postype = right
 pos = -80,150
 sprpriority = -1
 bindtime = -1
@@ -23863,12 +23893,12 @@ ownpal = 1
 
 [State 9165, for charge based abilities]
 type = Explod
-triggerall = TeamSide = 2
+triggerall = TeamSide = 2 
 trigger1 = var(19) = 11 && map(heat) < 300 && map(heat) > 200
-anim = 20021
-ID = 20021
+anim = 20022
+ID = 20022
 scale = .45,.45
-postype = left
+postype = right
 pos = -80,150
 sprpriority = -1
 bindtime = -1
@@ -23882,10 +23912,10 @@ ownpal = 1
 type = Explod
 triggerall = TeamSide = 2
 trigger1 = var(19) = 11 && map(heat) >= 300
-anim = 20021
-ID = 20021
+anim = 20023
+ID = 2002 3
 scale = .45,.45
-postype = left
+postype = right
 pos = -80,150
 sprpriority = -1
 bindtime = -1
@@ -23898,13 +23928,31 @@ ownpal = 1
 [State 9165, Bar p2]
 type = Explod
 triggerall = TeamSide = 2
-trigger1 = NumExplod(9201) = 0
+trigger1 = NumHelper(45001) = 0
 anim = 9201
 ID = 9201
 scale = 0.25,0.25
 postype = right
 pos = -34,128
 sprpriority = -3
+removetime = 1
+bindtime = -1
+pausemovetime = 0
+supermovetime = 0
+ignorehitpause = 1
+ownpal = 1
+
+[State 9165, Bar p2]
+type = Explod
+triggerall = TeamSide = 2
+trigger1 = NumHelper(45001) > 0
+anim = 9206
+ID = 9206
+scale = 0.25,0.25
+postype = right
+pos = -34,128
+sprpriority = -3
+removetime = 1
 bindtime = -1
 pausemovetime = 0
 supermovetime = 0

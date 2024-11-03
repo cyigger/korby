@@ -33,7 +33,7 @@ sparkno = 2			;Default hit spark number for HitDefs
 guard.sparkno = 13000	;Default guard spark number
 KO.echo = 0			;1 to enable echo on KO
 volume = 0			;Volume offset (negative for softer)
-IntPersistIndex = 54	;Variables with this index and above will not have their values
+IntPersistIndex = 52	;Variables with this index and above will not have their values
 FloatPersistIndex = 40  ;reset to 0 between rounds or matches. There are 60 int variables,
   				;indexed from 0 to 59, and 40 float variables, indexed from 0 to 39.
   				;If omitted, then it defaults to 60 and 40 for integer and float
@@ -115,17 +115,12 @@ enableDHC = 0; used to enable DHC in tag mode. 0 disables DHC, 1 enables DHC.
 disableTag = 0 ; Disables tagging when this map is set to 1
 burn = 0  ; Tracks how many burn stacks this character has (Inflicted by Jay)
 
-SavedX = 0 ; Jose&Carlos Exclusive
-SavedY = 0 ; Jose&Carlos Exclusive
-VelX = 0 ; Jose&Carlos Exclusive
-VelY = 0 ; Jose&Carlos Exclusive
-Palette = 0 ; Jose&Carlos Exclusive
 ControlPartner = 0 ; Jose&Carlos Exclusive
 
 switchX = 0 ; NOLL EXCLUSIVE: Used to track X position of switch 
 switchY = 0; NOLL EXCLUSIVE: Used to track Y position of switch 
 pbladedirectionHeld = 0 ;NOLL EXCLUSIVE: Saves the direction held as an integer. 0 = None, 1 = Forward, 2 = Backward, 3 = Down, 4 = Up
-AbilityBubble = 0  ; for korby **UNUSED**
+VoiceSwitch = 0  ; for korby 
 Has6C = 0  ; for korby
 Has4C = 0  ; for korby
 damagesave = 0 ; for korby
@@ -150,15 +145,16 @@ victory2 = "ur garbage"
 victory3 = "ggwp you suck"
 victory4 = "clipped"
 victory5 = "And now, I will annihilate the mortals for the sake of justice."
-victory6 = "gg"
+victory6 = "GG"
 victory7 = "That was rough."
 victory8 = "Well played."
-victory9 = "ok guys remember to like and subscribe "
+victory9 = "ok guys remember to like and subscribe"
 victory10 = "Knowing that you cannot win, you still persist... How truly foolish you are."
 victory11 = "mutt"
 victory12 = "Rejoice, you have reached the height of beauty at my hand."
 victory13 = "Burakku."
 victory14 = "ooh xd"
+victory15 = "corr — Today at 12:24 AM 'so how do i go rose'"
 ;---------------------------------------------------------------------------
 ; Lose by Time Over
 ; CNS difficulty: basic
@@ -194,17 +190,12 @@ ctrl = 0
 anim = 12345
 velset = 0,0
 
-[State 0, ScreenBound]
-type = ScreenBound
-trigger1 = time >=25
-value = 0
-movecamera = 0,0
-
 
 [State 0, Explod]
 type = assertspecial
 trigger1 = 1
 flag = nomusic
+
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 =  Time = 0
@@ -267,7 +258,7 @@ x = -6
 type = PlaySnd
 trigger1 =  Time = 110
 trigger1 = life <= 999
-value = S200,24+(random<500)*1+(random<500)*1+(random<500)*1+(random<500)*1+(random<500)*1
+value = Sifelse(map(VoiceSwitch)=0,200,205),24+(random<500)*1+(random<500)*1+(random<500)*1+(random<500)*1+(random<500)*1
 volumescale = 100
 channel = -1
 
@@ -275,14 +266,14 @@ channel = -1
 type = PlaySnd
 trigger1 =  Time = 120
 trigger1 = life >= 1000
-value = S2002,31
+value = Sifelse(map(VoiceSwitch)=0,2002,205),31
 volumescale = 1000
 channel = -1
 
 [State 181, AssertSpecial]
 type = AssertSpecial
-trigger1 = time = [0, 90] && life <= 999
-trigger2 = time = [0, 200] && life > 999
+trigger1 = time = [0, 110] && life <= 999
+trigger2 = time = [0, 250] && life > 999
 flag = roundnotover
 
 ;---------------------------------------------------------------------------
@@ -307,6 +298,7 @@ trigger1 = enemy,name != "KBB MK Mod"
 trigger1 = enemy,name != "Dedede"
 value = S2002,28+(random<500)*1
 volumescale = 75
+channel = 1
 
 [State 0, Voice - ]
 type = PlaySnd
@@ -315,6 +307,7 @@ trigger1 =  enemy,name = "KBB MK"
 trigger2 =  enemy,name = "KBB MK Mod"
 value = S2002,0
 volumescale = 75
+channel = 1
 
 [State 0, Voice - ]
 type = PlaySnd
@@ -322,6 +315,7 @@ trigger1 = AnimElem = 15
 trigger1 =  enemy,name = "Dedede"
 value = S2002,1
 volumescale = 75
+channel = 1
 
 [State 190, 1] ;Freeze animation until PreIntro is over
 type = ChangeAnim
@@ -455,6 +449,23 @@ movetype = I
 physics = S
 sprpriority = 2
 
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal ;player
+name = "STAR"
+ID = 240
+stateno = 241
+pos = 40,-40
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+supermovetime = 0
+pausemovetime = 0
+inheritJuggle = 1
+
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = command = "hold_a"
@@ -529,10 +540,90 @@ type = AssertSpecial
 trigger1 = 1
 flag = Intro
 
+
+
 [State 195, 2]
 type = ChangeState
 trigger1 = command = "hold_a"
 value = 0
+
+;-------------------------------------------------------------------------------
+; Voice switch Helper
+[Statedef 240]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 6957
+velset = 0,0
+sprpriority = 2
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0 && root,time >= 5
+value = S205,27
+volumescale = 100
+channel = 1
+persistent = 0
+
+[State 0,  vc set]
+type = RootMapSet
+trigger1 =  time = 0 && root,time >= 5
+map = "VoiceSwitch"
+value = 1
+persistent = 0
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = root,stateno != 195
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = root,command = "b" && root,stateno = 195 && time >= 25
+value = 241
+ctrl = 0
+
+
+;-------------------------------------------------------------------------------
+; Voice switch Helper 2
+[Statedef 241]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+ctrl = 0
+anim = 6956
+velset = 0,0
+sprpriority = 2
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0 && root,time >= 5
+value = S200,27 
+volumescale = 80
+channel = 1
+persistent = 0
+
+[State 0,  vc set]
+type = RootMapSet
+trigger1 =  time = 0 && root,time >= 5
+map = "VoiceSwitch"
+value = 0
+persistent = 0
+
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = root,stateno != 195
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = root,command = "b" && root,stateno = 195 && time >= 25
+value = 240
+ctrl = 0
+
 
 ;===============================================================================
 ; A:
@@ -565,6 +656,16 @@ value = 4
 
 [State 0, PlaySnd]
 type = PlaySnd
+triggerall = random < 600
+trigger1 = AnimElem = 1
+value = Sifelse(map(VoiceSwitch)=0,200,205),0+(random<500)*1+(random<500)*1+(random<500)*1
+volumescale = 200
+channel = 1
+
+
+
+[State 0, PlaySnd]
+type = PlaySnd
 trigger1 = AnimElem = 1
 value = S1,1
 volumescale = 50
@@ -593,7 +694,7 @@ pausetime = 8,12
 ground.hittime  = 10 + ifelse(enemy,movetype = A, 7,0)
 air.hittime = 25 + ifelse(enemy,movetype = A, 12,0)
 guard.pausetime = 10,18
-sparkno = 15000
+sparkno = 0
 guard.sparkno = 13000
 sparkxy = -8,-25
 hitsound   = S0,1
@@ -609,7 +710,7 @@ Fall = 0
 type = ChangeState
 triggerall = movehit || AnimTime  > -7
 trigger1 = command = "WD" && command != "NotWD"
-value = 30
+value = 35
 
 [State 200, SPECIAL 3 - CUTTER]
 type = ChangeState
@@ -768,7 +869,7 @@ guard.pausetime = 8,19
 ground.hittime  = 20
 air.hittime = 65 + ifelse(enemy,movetype = A, 17,0)
 guard.hittime = 10
-sparkno = 15000
+sparkno = 0
 guard.sparkno = 13000
 sparkxy = -8,-25
 hitsound   = S0,2
@@ -943,7 +1044,7 @@ guard.pausetime = 8,19
 ground.hittime  = 20
 air.hittime = 65 + ifelse(enemy,movetype = A, 17,0)
 guard.hittime = 10
-sparkno = 15000
+sparkno = 0
 guard.sparkno = 13000
 sparkxy = -8,-25
 hitsound   = S0,2
@@ -1055,15 +1156,15 @@ sprpriority = 2
 [State 0, VelAdd]
 type = VelAdd
 trigger1 = time = 0
-x = 18
+x = 19
 
 
-[State 0,helper]
+[State 0, AfterImage]
 type = AfterImage
+triggerall = numhelper(51000) = 0
 trigger1 = AnimElem = 1
-time = 16 ; why
-length = 3
-ignorehitpause = 1
+time = 7
+trans = add
 
 [State 0, Turn]
 type = Turn
@@ -1213,6 +1314,7 @@ map = "fatal"
 value = 1
 ignorehitpause = 1
 
+
 [State 0, VelSet]
 type = VelSet
 trigger1 = AnimElem = 1 
@@ -1228,7 +1330,7 @@ value = 0
 type = MapAdd
 trigger1 = movehit && enemy,gethitvar(fall)
 map = "juggle"
-value = 6
+value = 7
 persistent = 0
  
 [State 200, Damage Proration]
@@ -1237,7 +1339,7 @@ trigger1 = movehit
 v = 11
 ignorehitpause = 1
 persistent = 0
-value = 4
+value = 7
 
 
 [State 0, PowerAdd]
@@ -1264,14 +1366,14 @@ triggerall = !movecontact
 trigger1 = 1
 attr = S, NA
 animtype  = Light
-damage    = ifelse(enemy,movetype = A, 40,20)
+damage    = ifelse(enemy,movetype = A, 30,15)
 hitflag = MAF
 guardflag = M
 pausetime = ifelse(enemy,movetype = A, 16,8),ifelse(enemy,movetype = A, 20,10)
 ground.hittime  = 15
 air.hittime = 25 + ifelse(enemy,movetype = A, 12,0)
-guard.pausetime = 12,18
-sparkno = 15000
+guard.pausetime = 12,15
+sparkno = 1
 guard.sparkno = 13000
 sparkxy = -8,-25
 hitsound   = S0,1
@@ -1286,7 +1388,7 @@ fall.recover = 0
 
 ;[State 0, VelAdd]
 ;type = VelAdd
-;trigger1 = time = 1 && prevstateno != 320
+;trigger1 = time = 1 && prevstateno != 310
 ;x = 3
 ;y = -7
 [State 0, VelAdd]
@@ -1299,14 +1401,6 @@ y = ifelse(enemy,pos y < pos y,-7.5,-5.5)
 type = Turn
 triggerall = p2dist x < 0
 trigger1 = AnimTime = 0
-
-[State 200, End]
-type = ChangeState
-triggerall = movecontact
-trigger1 = command = "s"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 66
-ctrl = 1
 
 [State 300, End]
 type = ChangeState
@@ -1548,6 +1642,12 @@ trigger1 =  AnimElem = 4
 x = 15
 y = -8
 
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = A,NA,SA,HA,NP,SP,HP
+;value2 = S,NA
+time = 1
 
 [State 300, 1]
 type = HitDef
@@ -1557,7 +1657,7 @@ triggerall = map(juggle) < 100
 trigger1 = 1
 attr = A, NA
 animtype  = Heavy
-damage    = ifelse(enemy,movetype = A,60,9)
+damage    = ifelse(enemy,movetype = A,18,9)
 hitflag = MAFD
 guardflag = MA
 pausetime = ifelse(enemy,movetype = A,14,7),ifelse(enemy,movetype = A,20,10)
@@ -1631,7 +1731,7 @@ y = 0
 [State 0, VelSet]
 type = VelSet
 trigger1 = AnimElem = 2
-x = 9
+x = 6
 y = 0
 
 
@@ -1646,35 +1746,11 @@ value = 100
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = var(2) >= 10 && var(2) <= 25
+triggerall = random < 600
 trigger1 = AnimElem = 1
-value = S200,0
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 35 && var(2) <= 50
-trigger1 = AnimElem = 1
-value = S200,1
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 65 && var(2) <= 80
-trigger1 = AnimElem = 1
-value = S200,2
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 95 && var(2) <= 110
-trigger1 = AnimElem = 1
-value = S200,3
-volumescale = 100
-channel = 0
+value = Sifelse(map(VoiceSwitch)=0,200,205),0+(random<500)*1+(random<500)*1+(random<500)*1
+volumescale = 200
+channel = 1
 
 [State 300, 1]
 type = HitDef
@@ -1685,7 +1761,7 @@ triggerall = map(juggle) < 100
 attr = S, NA
 animtype  = Hard
 damage    = 20
-hitflag = MAF
+hitflag = MAFD
 guardflag = MA
 pausetime = 12,16
 guard.pausetime = 12,10
@@ -1703,11 +1779,13 @@ air.velocity = -2, .7
 fall.recover = 0
 air.fall = 1
 
-[State 200, End]
+[State 200, Wavedash Cancel]
 type = ChangeState
-triggerall = movehit || AnimTime  > -5
-trigger1 = command = "WD" && command != "NotWD"
-value = 30
+triggerall = movecontact
+Trigger1 = command = "WD" && command != "NotWD"
+trigger2 = roundstate = 2 && ailevel > 5 && random < (ailevel * 100)
+value = 35
+ctrl = 1
 
 [State 200, SPECIAL 1 - Sword]
 type = ChangeState
@@ -1725,14 +1803,6 @@ Triggerall = power >= 1500
 trigger1 = command = "SPECIAL 2"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 22000
-
-[State 200, SPECIAL 3 - CRASH]
-type = ChangeState
-Triggerall = movecontact
-triggerall = numhelper(3500) = 0
-Triggerall = power >= 1000
-trigger1 = command = "SPECIAL 4"
-value = 27000
 
 [State 200, SPECIAL 5 - Spit out]
 type = ChangeState
@@ -1819,47 +1889,30 @@ trigger1 = AnimElem = 2
 x = ifelse(prevstateno=[210,212],12,6)
 y = 0
 
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 10 && var(2) <= 25
-triggerall = prevstateno != 653
+[State 0, VelSet]
+type = PosSet
+trigger1 = prevstateno = 653
+y = 0
+
+[State 0, VelSet]
+type = VelSet
 trigger1 = AnimElem = 1
-value = S200,0
-volumescale = 100
-channel = 0
+x = ifelse(prevstateno = 653,10,4)
+y = 0
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = var(2) >= 35 && var(2) <= 50
-triggerall = prevstateno != 653
+triggerall = random < 600
 trigger1 = AnimElem = 1
-value = S200,1
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 65 && var(2) <= 80
-triggerall = prevstateno != 653
-trigger1 = AnimElem = 1
-value = S200,2
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 95 && var(2) <= 110
-triggerall = prevstateno != 653
-trigger1 = AnimElem = 1
-value = S200,3
-volumescale = 100
-channel = 0
+value = Sifelse(map(VoiceSwitch)=0,200,205),0+(random<500)*1+(random<500)*1+(random<500)*1
+volumescale = 200
+channel = 1
 
 [State 0, Juggle Map]
 type = MapAdd
 trigger1 = movehit && enemy,gethitvar(fall)
 map = "juggle"
-value = 5 ; Adds 5 juggle by default, 50 if done from 2c counter
+value = ifelse(prevstateno = 653,50,10) ; Adds 5 juggle by default, 50 if done from 2c counter
 persistent = 0
 
 [State 700, Damage Proration]
@@ -1868,7 +1921,7 @@ trigger1 = movehit
 v = 11
 ignorehitpause = 1
 persistent = 0
-value =  5
+value =  ifelse(prevstateno = 653,50,5)
 
 [State 0, PowerAdd]
 type = PowerAdd
@@ -1888,50 +1941,74 @@ triggerall = prevstateno != 653
 triggerall = map(juggle) < 100
 trigger1 = 1
 attr = S, NA
-animtype  = Medium
-damage    = 20
+animtype  = Hard
+damage    = 40
 hitflag = MAFD
 guardflag = MA
-pausetime = 12,14
-guard.pausetime = 12,11
+pausetime = 16,16
+guard.pausetime = 12,6
 ground.hittime  = 20 + ifelse(enemy,movetype = A, 10,0)
 air.hittime = 20 + ifelse(enemy,movetype = A, 10,0)
-sparkno = 15000
+sparkno = 2
+guard.sparkno = 13000
+sparkxy = -8,-25
+hitsound   = 5,4
+guardsound = 6,11
+guard.slidetime = 15
+guard.hittime = 15
+ground.type = Low
+ground.slidetime = 20
+ground.velocity = -2,-6
+air.velocity = -2, -6.5
+Fall = 1
+fall.recovertime = 40
+
+[State 700, Second Hit 2C]
+type = HitDef
+getpower = 0
+triggerall = !movecontact
+triggerall = prevstateno = 653
+trigger1 = 1
+attr = S, NA
+animtype  = Heavy
+damage  = 100
+HitFlag = MAFD
+guardflag = MA
+pausetime = 20,40
+sparkno = 2
 guard.sparkno = 13000
 sparkxy = -8,-25
 hitsound   = S0,3
-guardsound = 6,11
-ground.type = Low
-ground.slidetime = 25
-ground.velocity = -2,-3
-air.velocity = -2, -4
-Fall = 0
-fall.recovertime = 30
+guardsound = 6,10
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -0.5,-12 ; If used from fly 2c, has a different launching velocity
+air.velocity = -0.5,-12
+p2facing = 1
+fall = 1
+fall.recover = 0
+Envshake.time = 25
 
-;[State 200, End]
-;type = ChangeState
-;triggerall = movecontact
-;trigger1 = command = "WD"
-;value = 30
+[State 200, Wavedash Cancel]
+type = ChangeState
+triggerall = movecontact
+Trigger1 = command = "WD" && command != "NotWD"
+trigger2 = roundstate = 2 && ailevel > 5 && random < (ailevel * 100)
+value = 35
+ctrl = 1
 
-[State 200, SPECIAL 1 - Sword]
+[State 200, SPECIAL 1 - Sword] 
 type = ChangeState
 Triggerall = movecontact
 triggerall = numhelper(3500) = 0
 Triggerall = power >= 1000
 trigger1 = command = "SPECIAL 1"
 value = 21000
-[State 200, SPECIAL 2 - Hammer]
-type = ChangeState
-Triggerall = movecontact
-triggerall = numhelper(3500) = 0
-Triggerall = power >= 1500
-trigger1 = command = "SPECIAL 2"
-trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 22000
 
 [State 200, SPECIAL 3 - Cutter] ;why was crash here
 type = ChangeState
+triggerall = prevstateno != 653
 Triggerall = movecontact
 triggerall = numhelper(3500) = 0
 Triggerall = power >= 1000
@@ -1940,6 +2017,7 @@ value = 26000
 
 [State 200, SPECIAL 5 - Spit out]
 type = ChangeState
+triggerall = prevstateno != 653
 Triggerall = movecontact
 triggerall = numhelper(3500) = 0
 Triggerall = power >= 500
@@ -1955,15 +2033,25 @@ value = 20000
 ;trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 ;value = 210
 
+[State 300, End]
+type = ChangeState
+trigger1 = command = "a"
+trigger1 = movecontact
+triggerall = prevstateno != 653
+trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
+value = 220
+
 [State 200, 1]
 type = ChangeState
-triggerall = movecontact
-trigger1 = command = "b"
+trigger1 = command = "holdup"
+trigger1 = movecontact
+triggerall = prevstateno != 653
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 320
+value = 40
 
 [State 300, End]
 type = ChangeState
+triggerall = prevstateno != 653
 triggerall = movecontact
 triggerall = var(19) != 0
 trigger1 = command = "c"
@@ -1974,6 +2062,7 @@ ctrl = 1
 
 [State 300, End]
 type = ChangeState
+triggerall = prevstateno != 653
 triggerall = movecontact
 triggerall = var(19) != 0
 trigger1 = command = "c"
@@ -1983,6 +2072,7 @@ value = 420
 
 [State 300, End]
 type = ChangeState
+triggerall = prevstateno != 653
 triggerall = movecontact
 triggerall = var(19) != 0
 trigger1 = command = "c"
@@ -1992,6 +2082,7 @@ value = 440
 
 [State 300, End]
 type = ChangeState
+triggerall = prevstateno != 653
 triggerall = movecontact
 triggerall = var(19) != 0
 trigger1 = command = "c"
@@ -2915,6 +3006,7 @@ ground.velocity = -2,-1
 air.velocity = -2,-2
 down.velocity = -2,-2
 Fall = 1
+fall.recover = 1
 guard.cornerpush.veloff = -10
 airguard.cornerpush.veloff = -10
 
@@ -2960,7 +3052,7 @@ type = ChangeState
 Triggerall = movehit
 trigger1 = command = "holdup"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 50
+value = 40
 
 [State 300, End]
 type = ChangeState
@@ -3086,7 +3178,7 @@ damage    = 15
 hitflag = MAFD
 guardflag = HA
 pausetime = 8,12
-sparkno = 1
+sparkno = 0
 guard.sparkno = 13000
 sparkxy = -8,-25
 hitsound   = S0,1
@@ -3156,35 +3248,11 @@ sprpriority = 2
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = var(2) >= 10 && var(2) <= 25
+triggerall = random < 600
 trigger1 = AnimElem = 1
-value = S200,0
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 35 && var(2) <= 50
-trigger1 = AnimElem = 1
-value = S200,1
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 65 && var(2) <= 80
-trigger1 = AnimElem = 1
-value = S200,2
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 95 && var(2) <= 110
-trigger1 = AnimElem = 1
-value = S200,3
-volumescale = 100
-channel = 0
+value = Sifelse(map(VoiceSwitch)=0,200,205),0+(random<500)*1+(random<500)*1+(random<500)*1
+volumescale = 200
+channel = 1
 
 [State 0, PowerAdd]
 type = PowerAdd
@@ -3348,35 +3416,11 @@ ignorehitpause = 1
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = var(2) >= 10 && var(2) <= 25
+triggerall = random < 600
 trigger1 = AnimElem = 1
-value = S200,0
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 35 && var(2) <= 50
-trigger1 = AnimElem = 1
-value = S200,1
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 65 && var(2) <= 80
-trigger1 = AnimElem = 1
-value = S200,2
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 95 && var(2) <= 110
-trigger1 = AnimElem = 1
-value = S200,3
-volumescale = 100
-channel = 0
+value = Sifelse(map(VoiceSwitch)=0,200,205),0+(random<500)*1+(random<500)*1+(random<500)*1
+volumescale = 200
+channel = 1
 
 [State 0, Damage Proration]
 type = VarAdd
@@ -3444,7 +3488,7 @@ air.velocity = 12,4
 airguard.velocity = -7,-5
 Fall = 1
 Envshake.time = 30
-p2stateno = 1025    ;Make p2 go to state 1025 on hit
+p2stateno = 1025  ;Make p2 go to state 1025 on hit
 p2facing = 1        ;Force to face p1
 
 
@@ -3835,35 +3879,11 @@ value = 5
 
 [State 0, PlaySnd]
 type = PlaySnd
-triggerall = var(2) >= 10 && var(2) <= 25
+triggerall = random < 600
 trigger1 = AnimElem = 1
-value = S200,0
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 35 && var(2) <= 50
-trigger1 = AnimElem = 1
-value = S200,1
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 65 && var(2) <= 80
-trigger1 = AnimElem = 1
-value = S200,2
-volumescale = 100
-channel = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-triggerall = var(2) >= 95 && var(2) <= 110
-trigger1 = AnimElem = 1
-value = S200,3
-volumescale = 100
-channel = 0
+value = Sifelse(map(VoiceSwitch)=0,200,205),0+(random<500)*1+(random<500)*1+(random<500)*1
+volumescale = 200
+channel = 1
 
 [State 0, PowerAdd]
 type = PowerAdd
@@ -4044,7 +4064,7 @@ value = 10
 type = MapAdd
 trigger1 = movehit && enemy,gethitvar(fall)
 map = "juggle"
-value = 15
+value = 10
 
 persistent = 0
 [State 200, 1]
@@ -4295,7 +4315,7 @@ value = 5150
 [State 195, 1]
 type = playsnd
 trigger1 = Time = 100
-value = 2002,32
+value = Sifelse(map(VoiceSwitch)=0,2002,205),32
 Volumescale = 1000
 
 
@@ -4444,10 +4464,10 @@ type = Explod
 ownpal = 1
 trigger1 = enemy,movecountered && enemy,map(fatal) = 1
 trigger2 = gethitvar(damage) >= 75 
-trigger2 = map(hitOverride) = 0
 triggerall = movetype = H
 triggerall = var(19) != 0 
 triggerall = teamside = 1 ;p1 side
+triggerall = map(hitOverride) = 0
 triggerall = teammode = single || (teammode = tag && roundstate = 2)
 triggerall = numExplod(9500) = 0
 triggerall = stateno != 20010
@@ -4468,9 +4488,9 @@ pausemovetime = 99999999999999999999999
 [State 0, Ability]
 type = Explod
 ownpal = 1
+triggerall = map(hitOverride) = 0
 trigger1 = enemy,movecountered && enemy,map(fatal) = 1
 trigger2 = gethitvar(damage) >= 75
-trigger2 = map(hitOverride) = 0
 triggerall = movetype = H
 triggerall = var(19) != 0 
 triggerall = teamside = 2 ;p2 side
@@ -4494,14 +4514,13 @@ pausemovetime = 99999999999999999999999
 [State 0, Helper]
 type = Helper
 trigger1 = gethitvar(damage) >= 75
-trigger1 = map(hitOverride) = 0
 trigger2 = enemy,movecountered
 trigger2 = enemy,map(fatal) = 1
+triggerall = map(hitOverride) = 0
 triggerall = movetype = H
 triggerall = numhelper(45000) = 0
 triggerall = stateno != 20010
 triggerall = var(19) != 0 
-
 helpertype = normal ;player
 name = "STAR"
 stateno = 45000
@@ -4517,9 +4536,9 @@ pausemovetime = 0
 [State 1200, 6]
 type = explod
 trigger1 = gethitvar(damage) >= 75
-trigger1 = map(hitOverride) = 0
 trigger2 = enemy,map(fatal) = 1
 trigger2 = enemy,movecountered
+triggerall = map(hitOverride) = 0
 triggerall = movetype = H
 triggerall = numexplod(6955) = 0
 triggerall = stateno != 20010
@@ -4539,12 +4558,11 @@ persistent = 0
 
 [State 0, VarSet]
 type = VarSet
-triggerall = movetype = H 
+triggerall = map(hitOverride) = 0
 trigger1 = enemy,map(fatal) = 1 ; got fatal? LOSE ABILITY
 trigger1 = enemy,movecountered
-trigger1 = stateno != 20010 && stateno != [800, 840] ; don't count getting fataled during counter
+trigger1 = stateno != 20010
 trigger2 = gethitvar(damage) >= 75 ; took over 74 damage? LOSE ABILITY
-trigger2 = map(hitOverride) = 0
 v = 19    ;fv = 10
 value = 0
 persistent = 0
@@ -4552,12 +4570,11 @@ ignorehitpause = 1
 
 [State 0, VarSet]
 type = VarSet
-triggerall = movetype = H 
+triggerall = map(hitOverride) = 0
 trigger1 = enemy,map(fatal) = 1 ; got fatal? LOSE ABILITY
 trigger1 = enemy,movecountered
-trigger1 = stateno != 20010 && stateno != [800, 840] ; don't count getting fataled during counter
+trigger1 = stateno != 20010
 trigger2 = gethitvar(damage) >= 75 ; took over 74 damage? LOSE ABILITY
-trigger2 = map(hitOverride) = 0
 v = 10    ;fv = 10
 value = 0
 persistent = 0
@@ -4624,11 +4641,6 @@ trigger1 = matchover
 trigger1 = !alive
 trigger1 = stateno != 5690 && prevstateno != 5690
 value = 5690
-
-
-
-
-
 
 ;wallbounce----------
 [State 0, Wallbounce prevent reset]
@@ -5042,7 +5054,7 @@ value = palno
 
 [State 0, VarSet]
 type = VarSet
-trigger1 = var(52) > 14
+trigger1 = var(52) > 8
 v = 52    ;fv = 10
 value = 1
 
@@ -5050,7 +5062,7 @@ value = 1
 type = VarSet
 trigger1 = var(52) < 1
 v = 52    ;fv = 10
-value = 14
+value = 8
 ;-------------------------------------------------------------------
 
 [State 0, StopSnd]
